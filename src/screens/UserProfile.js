@@ -5,12 +5,14 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
   Switch,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================================
    TEMPORARY ONLINE PNG ICONS
@@ -114,29 +116,48 @@ const IMAGES = {
    MAIN USER PROFILE SCREEN
 ========================================================= */
 
+// Profile menu items -> registered screens
+const PROFILE_ROUTES = {
+  QuoteRequests: 'CompareQuote',
+  Orders: 'ProductDetail',
+  Saved: 'ServiceDetail',
+  Reviews: 'ServiceDetail',
+  DeliverySettings: 'UserSetting',
+  Wallet: 'Subscription',
+  NotificationSettings: 'Notification',
+  Support: 'UserSetting',
+};
+
 const UserProfile = ({ navigation }) => {
   const [darkMode, setDarkMode] = useState(true);
 
   const handleEditProfile = () => {
     console.log('Edit Profile');
+
+    navigation.navigate('UserSetting');
   };
 
   const handleLogout = () => {
     console.log('Logout');
 
-    // Example:
-    // navigation.replace('Login');
+    // Clear the history so Back can't return into the app.
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Login' }],
+    });
   };
 
   const handleNavigation = screen => {
     console.log('Navigate to:', screen);
 
-    // Example:
-    // navigation.navigate(screen);
+    navigation.navigate(PROFILE_ROUTES[screen] ?? screen);
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView
+      style={styles.safeArea}
+      edges={['top', 'left', 'right']}
+    >
       <StatusBar
         barStyle="light-content"
         backgroundColor="#071A2C"
@@ -170,6 +191,7 @@ const UserProfile = ({ navigation }) => {
             </View>
 
             <TouchableOpacity
+              onPress={() => navigation.navigate('UserSetting')}
               style={styles.headerProfileButton}
               activeOpacity={0.8}
             >
@@ -552,91 +574,6 @@ const UserProfile = ({ navigation }) => {
 
           <View style={styles.bottomSpace} />
         </ScrollView>
-
-        {/* =================================================
-            BOTTOM NAVIGATION
-        ================================================= */}
-
-        <View style={styles.bottomNav}>
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{ uri: ICONS.home }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Home
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{ uri: ICONS.explore }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Explore
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.centerNavButton}
-            activeOpacity={0.85}
-          >
-            <Image
-              source={{ uri: ICONS.plus }}
-              style={styles.centerNavIcon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{ uri: ICONS.chat }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Chat
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{ uri: ICONS.profile }}
-              style={[
-                styles.navIcon,
-                styles.navIconActive,
-              ]}
-              resizeMode="contain"
-            />
-
-            <Text
-              style={[
-                styles.navText,
-                styles.navTextActive,
-              ]}
-            >
-              Profile
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -746,8 +683,8 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 8,
-    paddingTop: 6,
+    paddingHorizontal: 10,
+    paddingTop: 8,
   },
 
   /* =====================================================
@@ -755,11 +692,11 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   header: {
-    minHeight: 32,
+    minHeight: 42,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   headerLeft: {
@@ -769,40 +706,40 @@ const styles = StyleSheet.create({
   },
 
   brandIconBox: {
-    width: 18,
-    height: 18,
-    borderRadius: 5,
+    width: 23,
+    height: 23,
+    borderRadius: 7,
     backgroundColor: '#3477D8',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   brandIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#FFFFFF',
   },
 
   headerBrandText: {
     flex: 1,
     color: '#BCC9D5',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   headerProfileButton: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 31,
+    height: 31,
+    borderRadius: 16,
     backgroundColor: '#AFC7FF',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   headerProfileIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#071A2C',
   },
 
@@ -812,9 +749,12 @@ const styles = StyleSheet.create({
 
   profileCard: {
     backgroundColor: '#102438',
-    borderRadius: 9,
-    padding: 9,
-    marginBottom: 8,
+    borderRadius: 16,
+    padding: 12,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   profileTopRow: {
@@ -823,15 +763,15 @@ const styles = StyleSheet.create({
   },
 
   avatarWrapper: {
-    width: 58,
-    height: 58,
-    marginRight: 9,
+    width: 75,
+    height: 75,
+    marginRight: 12,
   },
 
   avatar: {
-    width: 54,
-    height: 54,
-    borderRadius: 27,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     borderWidth: 2,
     borderColor: '#31546D',
   },
@@ -840,9 +780,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 1,
-    width: 18,
-    height: 18,
-    borderRadius: 9,
+    width: 23,
+    height: 23,
+    borderRadius: 12,
     backgroundColor: '#AFC7FF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -852,7 +792,7 @@ const styles = StyleSheet.create({
 
   avatarBadgeText: {
     color: '#071A2C',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '900',
   },
 
@@ -862,86 +802,86 @@ const styles = StyleSheet.create({
 
   profileName: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: '900',
   },
 
   profileContact: {
     color: '#8EA2B5',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
   profileBadgeRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 5,
+    marginTop: 7,
   },
 
   verifiedBadge: {
     backgroundColor: 'rgba(16,185,129,0.14)',
-    borderRadius: 6,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    borderRadius: 8,
+    paddingHorizontal: 7,
+    paddingVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   verifiedBadgeIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#10B981',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   verifiedBadgeText: {
     color: '#10B981',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '700',
   },
 
   ratingBadge: {
-    marginLeft: 5,
+    marginLeft: 7,
     backgroundColor: 'rgba(245,158,11,0.15)',
-    borderRadius: 6,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    borderRadius: 8,
+    paddingHorizontal: 7,
+    paddingVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   ratingStar: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     marginRight: 2,
   },
 
   ratingBadgeText: {
     color: '#F59E0B',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '800',
   },
 
   editProfileButton: {
-    height: 28,
-    borderRadius: 6,
+    height: 36,
+    borderRadius: 8,
     backgroundColor: '#18354D',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 8,
+    marginTop: 10,
   },
 
   editProfileIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#8EB6FF',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   editProfileText: {
     color: '#D8E4ED',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
@@ -952,75 +892,78 @@ const styles = StyleSheet.create({
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   statCard: {
     width: '31.8%',
-    minHeight: 65,
-    borderRadius: 8,
+    minHeight: 85,
+    borderRadius: 14,
     backgroundColor: '#102438',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   statIconBox: {
-    width: 25,
-    height: 25,
-    borderRadius: 7,
+    width: 33,
+    height: 33,
+    borderRadius: 9,
     backgroundColor: '#183650',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   statIconBoxGreen: {
-    width: 25,
-    height: 25,
-    borderRadius: 7,
+    width: 33,
+    height: 33,
+    borderRadius: 9,
     backgroundColor: 'rgba(16,185,129,0.13)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   statIconBoxOrange: {
-    width: 25,
-    height: 25,
-    borderRadius: 7,
+    width: 33,
+    height: 33,
+    borderRadius: 9,
     backgroundColor: 'rgba(245,158,11,0.13)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   statIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#70A7FF',
   },
 
   statIconGreen: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#10B981',
   },
 
   statIconOrange: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#F59E0B',
   },
 
   statValue: {
     color: '#FFFFFF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '900',
   },
 
   statLabel: {
     color: '#8599AC',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 1,
     textAlign: 'center',
   },
@@ -1030,14 +973,17 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   businessModeCard: {
-    minHeight: 48,
+    minHeight: 62,
     backgroundColor: '#102438',
-    borderRadius: 8,
-    paddingHorizontal: 8,
+    borderRadius: 14,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10,
+    marginBottom: 13,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   businessModeLeft: {
@@ -1046,18 +992,18 @@ const styles = StyleSheet.create({
   },
 
   businessModeIconBox: {
-    width: 29,
-    height: 29,
-    borderRadius: 7,
+    width: 38,
+    height: 38,
+    borderRadius: 9,
     backgroundColor: '#183650',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   businessModeIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#75A9FF',
   },
 
@@ -1072,33 +1018,33 @@ const styles = StyleSheet.create({
 
   businessModeTitle: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   proBadge: {
     backgroundColor: 'rgba(245,158,11,0.13)',
-    borderRadius: 4,
-    paddingHorizontal: 4,
+    borderRadius: 5,
+    paddingHorizontal: 5,
     paddingVertical: 2,
-    marginLeft: 4,
+    marginLeft: 5,
   },
 
   proBadgeText: {
     color: '#F59E0B',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '900',
   },
 
   businessModeSubtitle: {
     color: '#778DA0',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
   businessModeArrow: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#8297AA',
   },
 
@@ -1108,23 +1054,26 @@ const styles = StyleSheet.create({
 
   sectionLabel: {
     color: '#89A0B5',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0.35,
-    marginBottom: 5,
+    marginBottom: 7,
     marginTop: 2,
   },
 
   menuCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    marginBottom: 10,
+    borderRadius: 14,
+    marginBottom: 13,
     overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   menuRow: {
-    minHeight: 47,
-    paddingHorizontal: 8,
+    minHeight: 61,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -1137,34 +1086,34 @@ const styles = StyleSheet.create({
   },
 
   menuIconBox: {
-    width: 27,
-    height: 27,
-    borderRadius: 7,
+    width: 35,
+    height: 35,
+    borderRadius: 9,
     backgroundColor: '#17334D',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   menuIconBoxOrange: {
-    width: 27,
-    height: 27,
-    borderRadius: 7,
+    width: 35,
+    height: 35,
+    borderRadius: 9,
     backgroundColor: 'rgba(245,158,11,0.11)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   menuIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#75A9FF',
   },
 
   menuIconOrange: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#F59E0B',
   },
 
@@ -1174,13 +1123,13 @@ const styles = StyleSheet.create({
 
   menuTitle: {
     color: '#E8EFF5',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   menuSubtitle: {
     color: '#71879A',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
@@ -1194,11 +1143,11 @@ const styles = StyleSheet.create({
   },
 
   menuBadge: {
-    borderRadius: 5,
+    borderRadius: 7,
     backgroundColor: '#203B55',
-    paddingHorizontal: 5,
-    paddingVertical: 3,
-    marginRight: 6,
+    paddingHorizontal: 7,
+    paddingVertical: 4,
+    marginRight: 8,
   },
 
   menuBadgeOrange: {
@@ -1207,7 +1156,7 @@ const styles = StyleSheet.create({
 
   menuBadgeText: {
     color: '#8FB6FF',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '700',
   },
 
@@ -1216,15 +1165,15 @@ const styles = StyleSheet.create({
   },
 
   menuArrow: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#7890A4',
   },
 
   menuDivider: {
     height: 1,
     backgroundColor: '#172F43',
-    marginLeft: 42,
+    marginLeft: 55,
   },
 
   darkModeSwitch: {
@@ -1239,25 +1188,25 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   logoutButton: {
-    height: 38,
-    borderRadius: 7,
+    height: 49,
+    borderRadius: 9,
     backgroundColor: '#2B0F1A',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 11,
+    marginBottom: 14,
   },
 
   logoutIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#F06072',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   logoutText: {
     color: '#F27787',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
   },
 
@@ -1267,23 +1216,23 @@ const styles = StyleSheet.create({
 
   footer: {
     alignItems: 'center',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   footerTitle: {
     color: '#7890A4',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
   footerSubtitle: {
     color: '#526A7E',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 2,
   },
 
   bottomSpace: {
-    height: 70,
+    height: 26,
   },
 
   /* =====================================================
@@ -1295,7 +1244,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 58,
+    height: 75,
     backgroundColor: '#081A2B',
     borderTopWidth: 1,
     borderTopColor: '#132B42',
@@ -1305,15 +1254,15 @@ const styles = StyleSheet.create({
   },
 
   navItem: {
-    width: 48,
+    width: 62,
     alignItems: 'center',
   },
 
   navIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#71879A',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   navIconActive: {
@@ -1322,7 +1271,7 @@ const styles = StyleSheet.create({
 
   navText: {
     color: '#6F8497',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   navTextActive: {
@@ -1330,18 +1279,18 @@ const styles = StyleSheet.create({
   },
 
   centerNavButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+    width: 55,
+    height: 55,
+    borderRadius: 27,
     backgroundColor: '#AFC8FF',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -18,
+    marginTop: -23,
   },
 
   centerNavIcon: {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
     tintColor: '#071A2C',
   },
 });

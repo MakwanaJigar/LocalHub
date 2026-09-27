@@ -141,7 +141,7 @@ const Splash = ({ navigation }) => {
 
     const navTimer = setTimeout(() => {
       if (navigation) {
-        navigation.replace('Home');
+        navigation.replace('Login');
       }
     }, 4200);
 
@@ -334,9 +334,9 @@ const styles = StyleSheet.create({
   statusBadge: {
     position: 'absolute',
     top: height * 0.065,
-    minHeight: 27,
-    paddingHorizontal: 16,
-    borderRadius: 16,
+    minHeight: 35,
+    paddingHorizontal: 21,
+    borderRadius: 21,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -354,11 +354,11 @@ const styles = StyleSheet.create({
   },
 
   statusDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 10,
+    width: 8,
+    height: 8,
+    borderRadius: 13,
     backgroundColor: '#10B981',
-    marginRight: 7,
+    marginRight: 9,
     shadowColor: '#10B981',
     shadowOpacity: 1,
     shadowRadius: 5,
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
   },
 
   statusText: {
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
     letterSpacing: 0.4,
     color: '#4FE1B0',
@@ -375,30 +375,30 @@ const styles = StyleSheet.create({
   centerContent: {
     width: '100%',
     alignItems: 'center',
-    marginTop: -15,
+    marginTop: -20,
   },
 
   logoOuter: {
-    width: 100,
-    height: 100,
+    width: 130,
+    height: 130,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 21,
+    marginBottom: 27,
   },
 
   logoGlow: {
     position: 'absolute',
-    width: 105,
-    height: 105,
-    borderRadius: 28,
+    width: 137,
+    height: 137,
+    borderRadius: 36,
     backgroundColor: '#3B82F6',
     transform: [{ scale: 1.22 }],
   },
 
   logoBox: {
-    width: 84,
-    height: 84,
-    borderRadius: 19,
+    width: 109,
+    height: 109,
+    borderRadius: 25,
     backgroundColor: '#0B2239',
     alignItems: 'center',
     justifyContent: 'center',
@@ -408,42 +408,42 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 8,
     },
 
     elevation: 10,
   },
 
   logo: {
-    width: 60,
-    height: 60,
+    width: 78,
+    height: 78,
   },
 
   title: {
     color: '#F4F8FC',
-    fontSize: 28,
+    fontSize: 36,
     fontWeight: '800',
     letterSpacing: -0.8,
-    marginBottom: 9,
+    marginBottom: 12,
   },
 
   subtitle: {
     color: '#D8E5F3',
     textAlign: 'center',
-    fontSize: 16,
-    lineHeight: 21,
+    fontSize: 23,
+    lineHeight: 30,
     fontWeight: '700',
-    paddingHorizontal: 35,
+    paddingHorizontal: 46,
   },
 
   description: {
-    marginTop: 12,
+    marginTop: 16,
     color: '#94A3B8',
     textAlign: 'center',
-    fontSize: 10,
-    lineHeight: 15,
+    fontSize: 16,
+    lineHeight: 21,
     fontWeight: '500',
-    paddingHorizontal: 30,
+    paddingHorizontal: 39,
   },
 
   bottomSection: {
@@ -456,52 +456,52 @@ const styles = StyleSheet.create({
   readyRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 13,
+    marginBottom: 17,
   },
 
   syncIcon: {
     color: '#94A3B8',
-    fontSize: 15,
-    marginRight: 6,
+    fontSize: 22,
+    marginRight: 8,
   },
 
   readyText: {
     color: '#AEBFD1',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '700',
   },
 
   progressBackground: {
     width: '100%',
-    height: 5,
-    borderRadius: 10,
+    height: 7,
+    borderRadius: 13,
     overflow: 'hidden',
     backgroundColor: 'rgba(148,163,184,0.15)',
   },
 
   progressFill: {
     height: '100%',
-    borderRadius: 10,
+    borderRadius: 13,
     backgroundColor: '#10B981',
   },
 
   bottomMeta: {
     width: '100%',
-    marginTop: 12,
+    marginTop: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
 
   latencyText: {
     color: '#6F8296',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
     letterSpacing: 0.25,
   },
 
   secureText: {
     color: '#10B981',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
     letterSpacing: 0.25,
   },

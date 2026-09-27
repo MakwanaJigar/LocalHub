@@ -1,28 +1,17 @@
 import React from 'react'
-// import Splash  from './src/screens/Splash'
-// import Login  from './src/auth/Login'
-// import Register  from './src/auth/Register'
-//  import ForgotPassword   from './src/auth/ForgotPassword'
-// import OTP   from './src/auth/OTP'
-// import ResetPassword from './src/auth/ResetPassword'
-// import Home from './src/screens/Home'
-// import CompareQuote from './src/screens/CompareQuote'
-// import AskLocal from './src/screens/AskLocal'
-import ServiceDetail from './src/screens/UserSetting'
+import { NavigationContainer } from '@react-navigation/native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import AppNavigator from './src/navigation/AppNavigator'
 
 const App = () => {
   return (
-    <>
-     {/* <Splash />  */}
-     {/* <Login /> */}
-     {/* <Register /> */}
-     {/* <ResetPassword /> */}
-     {/* <Home /> */}
-     {/* <CompareQuote /> */}
-     {/* <AskLocal /> */}
-     {/* <ServiceDetail /> */}
-     <ServiceDetail />
-    </>
+    // SafeAreaProvider is required for SafeAreaView from
+    // react-native-safe-area-context to get the insets
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
   )
 }
 

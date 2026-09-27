@@ -5,11 +5,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================================
    TEMPORARY ONLINE ICONS
@@ -116,12 +118,14 @@ const Notification = ({ navigation }) => {
   const handleCompare = () => {
     console.log('Compare Quotes');
 
-    // Example:
-    // navigation.navigate('CompareQuote');
+    navigation.navigate('CompareQuote');
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView
+      style={styles.safeArea}
+      edges={['top', 'left', 'right']}
+    >
       <StatusBar
         barStyle="light-content"
         backgroundColor="#071A2C"
@@ -662,9 +666,9 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 8,
-    paddingTop: 6,
-    paddingBottom: 20,
+    paddingHorizontal: 10,
+    paddingTop: 8,
+    paddingBottom: 26,
   },
 
   /* =====================================================
@@ -672,7 +676,7 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   header: {
-    minHeight: 34,
+    minHeight: 44,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -687,57 +691,57 @@ const styles = StyleSheet.create({
   headerRight: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 5,
   },
 
   iconButton: {
-    width: 25,
-    height: 25,
+    width: 33,
+    height: 33,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   topIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#B7C8D8',
   },
 
   brandIconBox: {
-    width: 18,
-    height: 18,
-    borderRadius: 5,
+    width: 23,
+    height: 23,
+    borderRadius: 7,
     backgroundColor: '#3677DB',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   brandIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#FFFFFF',
   },
 
   headerTitle: {
     color: '#CFDAE5',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
     flex: 1,
   },
 
   profileButton: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 31,
+    height: 31,
+    borderRadius: 16,
     backgroundColor: '#AFC7FF',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   profileIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#071A2C',
   },
 
@@ -749,8 +753,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 4,
-    marginBottom: 7,
+    marginTop: 5,
+    marginBottom: 9,
   },
 
   activityTitleRow: {
@@ -759,16 +763,16 @@ const styles = StyleSheet.create({
   },
 
   activityDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   activityTitle: {
     color: '#B8C8D5',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '800',
     letterSpacing: 0.3,
   },
@@ -779,15 +783,15 @@ const styles = StyleSheet.create({
   },
 
   markReadIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#6EA7FF',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   markReadText: {
     color: '#7EA9FF',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
@@ -796,15 +800,15 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   filterRow: {
-    gap: 5,
-    paddingBottom: 8,
+    gap: 7,
+    paddingBottom: 10,
   },
 
   filterButton: {
-    height: 24,
-    borderRadius: 12,
+    height: 31,
+    borderRadius: 16,
     backgroundColor: '#102438',
-    paddingHorizontal: 9,
+    paddingHorizontal: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -815,7 +819,7 @@ const styles = StyleSheet.create({
 
   filterText: {
     color: '#93A7BA',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
@@ -829,9 +833,12 @@ const styles = StyleSheet.create({
 
   notificationCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 8,
-    marginBottom: 8,
+    borderRadius: 14,
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   cardHeaderRow: {
@@ -840,54 +847,54 @@ const styles = StyleSheet.create({
 
   cardContent: {
     flex: 1,
-    marginLeft: 7,
+    marginLeft: 9,
   },
 
   cardIconBoxBlue: {
-    width: 30,
-    height: 30,
-    borderRadius: 7,
+    width: 39,
+    height: 39,
+    borderRadius: 9,
     backgroundColor: '#18385A',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   cardIconBoxOrange: {
-    width: 30,
-    height: 30,
-    borderRadius: 7,
+    width: 39,
+    height: 39,
+    borderRadius: 9,
     backgroundColor: '#4A3410',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   cardIconBoxGreen: {
-    width: 30,
-    height: 30,
-    borderRadius: 7,
+    width: 39,
+    height: 39,
+    borderRadius: 9,
     backgroundColor: '#0F4038',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   cardIconBoxPurple: {
-    width: 30,
-    height: 30,
-    borderRadius: 7,
+    width: 39,
+    height: 39,
+    borderRadius: 9,
     backgroundColor: '#243961',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   cardIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#8BB6FF',
   },
 
   cardIconNoTint: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
   },
 
   cardTopLine: {
@@ -898,7 +905,7 @@ const styles = StyleSheet.create({
 
   cardTitle: {
     color: '#FFFFFF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '800',
     flexShrink: 1,
   },
@@ -906,33 +913,33 @@ const styles = StyleSheet.create({
   timeRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 5,
+    marginLeft: 7,
   },
 
   timeText: {
     color: '#72889B',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   unreadDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#8CB6FF',
-    marginLeft: 4,
+    marginLeft: 5,
   },
 
   cardDescription: {
     color: '#C1CEDA',
-    fontSize: 6,
-    lineHeight: 9,
-    marginTop: 4,
+    fontSize: 12,
+    lineHeight: 16,
+    marginTop: 5,
   },
 
   cardMeta: {
     color: '#7790A5',
-    fontSize: 5,
-    marginTop: 4,
+    fontSize: 11,
+    marginTop: 5,
   },
 
   cardMetaDivider: {
@@ -946,89 +953,90 @@ const styles = StyleSheet.create({
   cardActionRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
-    marginLeft: 37,
+    marginTop: 10,
+    marginLeft: 48,
   },
 
   primaryButton: {
-    height: 31,
+    height: 44,
     flex: 1,
     backgroundColor: '#AFC8FF',
-    borderRadius: 6,
+    borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    ...SHADOW.glow,
   },
 
   primaryButtonText: {
     color: '#071A2C',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '800',
   },
 
   primaryButtonIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#071A2C',
-    marginLeft: 4,
+    marginLeft: 5,
   },
 
   moreButton: {
-    width: 31,
-    height: 31,
-    borderRadius: 6,
+    width: 40,
+    height: 40,
+    borderRadius: 8,
     backgroundColor: '#091C2E',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 6,
+    marginLeft: 8,
   },
 
   moreIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#7B90A4',
   },
 
   darkActionButton: {
-    minWidth: 85,
-    height: 27,
-    borderRadius: 5,
+    minWidth: 111,
+    height: 35,
+    borderRadius: 7,
     backgroundColor: '#17334B',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
   },
 
   darkActionIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#F59E0B',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   greenActionIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   darkActionText: {
     color: '#E3EBF2',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   secondaryTextButton: {
-    height: 27,
+    height: 35,
     justifyContent: 'center',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
   },
 
   secondaryText: {
     color: '#B1C0CD',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '600',
   },
 
@@ -1044,15 +1052,15 @@ const styles = StyleSheet.create({
 
   discountTag: {
     backgroundColor: 'rgba(245,158,11,0.16)',
-    borderRadius: 4,
-    paddingHorizontal: 4,
+    borderRadius: 5,
+    paddingHorizontal: 5,
     paddingVertical: 2,
-    marginLeft: 5,
+    marginLeft: 7,
   },
 
   discountTagText: {
     color: '#F59E0B',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '900',
   },
 
@@ -1062,19 +1070,21 @@ const styles = StyleSheet.create({
   },
 
   merchantMiniCard: {
-    marginTop: 6,
+    marginTop: 8,
     backgroundColor: '#091C2E',
-    borderRadius: 6,
-    padding: 5,
+    borderRadius: 12,
+    padding: 7,
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
   },
 
   merchantImage: {
-    width: 31,
-    height: 31,
-    borderRadius: 5,
-    marginRight: 6,
+    width: 40,
+    height: 40,
+    borderRadius: 7,
+    marginRight: 8,
   },
 
   merchantContent: {
@@ -1083,13 +1093,13 @@ const styles = StyleSheet.create({
 
   merchantName: {
     color: '#DCE5EE',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   merchantMeta: {
     color: '#73899C',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
@@ -1098,26 +1108,26 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   successStrip: {
-    marginTop: 6,
+    marginTop: 8,
     alignSelf: 'flex-start',
     backgroundColor: 'rgba(16,185,129,0.12)',
-    borderRadius: 5,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    borderRadius: 7,
+    paddingHorizontal: 7,
+    paddingVertical: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   successStripIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#10B981',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   successStripText: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
@@ -1133,22 +1143,22 @@ const styles = StyleSheet.create({
 
   proBadge: {
     backgroundColor: '#273D67',
-    paddingHorizontal: 4,
+    paddingHorizontal: 5,
     paddingVertical: 2,
-    borderRadius: 4,
-    marginLeft: 4,
+    borderRadius: 5,
+    marginLeft: 5,
   },
 
   proBadgeText: {
     color: '#AFC8FF',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '900',
   },
 
   leadMetaRow: {
     flexDirection: 'row',
-    gap: 10,
-    marginTop: 5,
+    gap: 13,
+    marginTop: 7,
   },
 
   leadMetaItem: {
@@ -1157,72 +1167,73 @@ const styles = StyleSheet.create({
   },
 
   leadMetaIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#7FA8FF',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   leadMetaText: {
     color: '#8599AC',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   budgetTag: {
     alignSelf: 'flex-start',
-    marginTop: 5,
+    marginTop: 7,
     backgroundColor: 'rgba(245,158,11,0.13)',
-    borderRadius: 4,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    borderRadius: 5,
+    paddingHorizontal: 7,
+    paddingVertical: 4,
   },
 
   budgetTagText: {
     color: '#F59E0B',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '800',
   },
 
   sendProposalButton: {
-    height: 29,
-    minWidth: 90,
-    borderRadius: 5,
+    height: 44,
+    minWidth: 117,
+    borderRadius: 14,
     backgroundColor: '#3B82F6',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    ...SHADOW.glow,
   },
 
   sendProposalIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#071A2C',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   sendProposalText: {
     color: '#071A2C',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '800',
   },
 
   contractorCount: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 8,
+    marginLeft: 10,
   },
 
   contractorNumber: {
     color: '#BBD0E1',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   contractorText: {
     color: '#71879A',
-    fontSize: 4,
-    lineHeight: 6,
+    fontSize: 10,
+    lineHeight: 13,
   },
 
   /* =====================================================
@@ -1230,14 +1241,17 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   settingsCard: {
-    height: 49,
-    borderRadius: 8,
+    height: 64,
+    borderRadius: 14,
     backgroundColor: '#102438',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     marginTop: 2,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   settingsLeft: {
@@ -1246,36 +1260,36 @@ const styles = StyleSheet.create({
   },
 
   settingsIconBox: {
-    width: 27,
-    height: 27,
-    borderRadius: 6,
+    width: 35,
+    height: 35,
+    borderRadius: 8,
     backgroundColor: '#172F45',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   settingsIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#A9C0D5',
   },
 
   settingsTitle: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   settingsSubtitle: {
     color: '#788EA1',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
   settingsArrow: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#8196A9',
   },
 
@@ -1286,24 +1300,24 @@ const styles = StyleSheet.create({
   footerSecurity: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 14,
+    marginTop: 18,
   },
 
   footerLockIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#8DA2B5',
-    marginBottom: 4,
+    marginBottom: 5,
   },
 
   footerSecurityText: {
     color: '#5F7689',
-    fontSize: 4,
+    fontSize: 10,
     letterSpacing: 0.4,
     fontWeight: '700',
   },
 
   bottomSpace: {
-    height: 20,
+    height: 26,
   },
 });

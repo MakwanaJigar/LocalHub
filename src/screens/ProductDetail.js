@@ -5,11 +5,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================================
    TEMPORARY ONLINE PNG ICONS
@@ -872,9 +874,9 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 8,
-    paddingTop: 5,
-    paddingBottom: 25,
+    paddingHorizontal: 10,
+    paddingTop: 7,
+    paddingBottom: 33,
   },
 
   /* =====================================================
@@ -882,7 +884,7 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   header: {
-    minHeight: 34,
+    minHeight: 44,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -895,20 +897,20 @@ const styles = StyleSheet.create({
 
   headerRight: {
     flexDirection: 'row',
-    gap: 5,
+    gap: 7,
   },
 
   headerIconButton: {
-    width: 26,
-    height: 26,
-    borderRadius: 7,
+    width: 34,
+    height: 34,
+    borderRadius: 9,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   headerIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#B8C9D8',
   },
 
@@ -917,30 +919,30 @@ const styles = StyleSheet.create({
   },
 
   headerShield: {
-    width: 17,
-    height: 17,
-    borderRadius: 5,
+    width: 22,
+    height: 22,
+    borderRadius: 7,
     backgroundColor: '#316DD0',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   headerShieldIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#FFFFFF',
   },
 
   headerTitle: {
     color: '#E8EEF4',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
   },
 
   headerSubtitle: {
     color: '#72889B',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   /* =====================================================
@@ -948,7 +950,7 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   merchantMiniBar: {
-    height: 24,
+    height: 31,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -960,29 +962,29 @@ const styles = StyleSheet.create({
   },
 
   miniVerifiedCircle: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+    width: 16,
+    height: 16,
+    borderRadius: 8,
     backgroundColor: 'rgba(16,185,129,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   miniVerifiedIcon: {
-    width: 7,
-    height: 7,
+    width: 9,
+    height: 9,
     tintColor: '#10B981',
   },
 
   merchantMiniText: {
     color: '#AEC0CF',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   merchantMiniDistance: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
@@ -991,11 +993,14 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   heroCard: {
-    height: 142,
-    borderRadius: 8,
+    height: 185,
+    borderRadius: 14,
     overflow: 'hidden',
     position: 'relative',
     backgroundColor: '#102438',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   heroImage: {
@@ -1004,58 +1009,62 @@ const styles = StyleSheet.create({
   },
 
   heroOverlay: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: 'rgba(2,13,22,0.17)',
   },
 
   liveInventoryBadge: {
     position: 'absolute',
-    top: 7,
-    left: 7,
+    top: 9,
+    left: 9,
     backgroundColor: 'rgba(16,185,129,0.18)',
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 9,
-    paddingHorizontal: 6,
-    paddingVertical: 3,
+    borderRadius: 12,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
 
   liveDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#10B981',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   liveInventoryText: {
     color: '#3EE1AA',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '800',
   },
 
   productSizeBadge: {
     position: 'absolute',
-    bottom: 7,
-    left: 7,
+    bottom: 9,
+    left: 9,
     backgroundColor: 'rgba(7,26,44,0.8)',
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    borderRadius: 5,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 7,
   },
 
   productSizeBadgeText: {
     color: '#FFFFFF',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
   heroBrand: {
     position: 'absolute',
-    bottom: 7,
-    right: 7,
+    bottom: 9,
+    right: 9,
     color: '#A8B9C8',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '800',
   },
 
@@ -1067,7 +1076,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 7,
+    marginTop: 9,
   },
 
   stockStatus: {
@@ -1076,29 +1085,29 @@ const styles = StyleSheet.create({
   },
 
   stockDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   stockStatusText: {
     color: '#10B981',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   productCodeBadge: {
     backgroundColor: '#102A3D',
-    borderRadius: 6,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    borderRadius: 8,
+    paddingHorizontal: 7,
+    paddingVertical: 4,
   },
 
   productCodeText: {
     color: '#8299AC',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   /* =====================================================
@@ -1106,28 +1115,28 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   productTitleSection: {
-    marginTop: 5,
+    marginTop: 7,
   },
 
   brandLabel: {
     color: '#6EA6FF',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   productTitle: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: '900',
-    lineHeight: 16,
+    lineHeight: 26,
     marginTop: 2,
   },
 
   productDescription: {
     color: '#A2B3C2',
-    fontSize: 6,
-    lineHeight: 9,
-    marginTop: 4,
+    fontSize: 12,
+    lineHeight: 16,
+    marginTop: 5,
   },
 
   /* =====================================================
@@ -1135,18 +1144,21 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   priceCard: {
-    marginTop: 8,
+    marginTop: 10,
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 8,
+    borderRadius: 14,
+    padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   currentPrice: {
     color: '#FFFFFF',
-    fontSize: 16,
+    fontSize: 23,
     fontWeight: '900',
   },
 
@@ -1158,21 +1170,21 @@ const styles = StyleSheet.create({
 
   oldPrice: {
     color: '#71879B',
-    fontSize: 6,
+    fontSize: 12,
     textDecorationLine: 'line-through',
   },
 
   discountBadge: {
     backgroundColor: 'rgba(245,158,11,0.15)',
-    paddingHorizontal: 5,
+    paddingHorizontal: 7,
     paddingVertical: 2,
-    borderRadius: 4,
-    marginLeft: 5,
+    borderRadius: 5,
+    marginLeft: 7,
   },
 
   discountText: {
     color: '#F59E0B',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '800',
   },
 
@@ -1182,12 +1194,12 @@ const styles = StyleSheet.create({
 
   taxText: {
     color: '#8297AA',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   savingText: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
     marginTop: 2,
   },
@@ -1200,16 +1212,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#09242F',
-    borderRadius: 7,
-    padding: 7,
-    marginTop: 7,
+    borderRadius: 9,
+    padding: 9,
+    marginTop: 9,
   },
 
   guaranteeIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#10B981',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   guaranteeContent: {
@@ -1218,19 +1230,19 @@ const styles = StyleSheet.create({
 
   guaranteeTitle: {
     color: '#DCE7EF',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   guaranteeSubtitle: {
     color: '#779389',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 1,
   },
 
   guaranteeArrow: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#8097AA',
   },
 
@@ -1240,9 +1252,12 @@ const styles = StyleSheet.create({
 
   storeCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 8,
-    marginTop: 7,
+    borderRadius: 14,
+    padding: 10,
+    marginTop: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   storeHeader: {
@@ -1257,24 +1272,24 @@ const styles = StyleSheet.create({
   },
 
   storeIconBox: {
-    width: 27,
-    height: 27,
-    borderRadius: 6,
+    width: 35,
+    height: 35,
+    borderRadius: 8,
     backgroundColor: '#18364F',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   storeIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#6EA7FF',
   },
 
   storeTitle: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
   },
 
@@ -1285,35 +1300,35 @@ const styles = StyleSheet.create({
   },
 
   verifiedStoreIcon: {
-    width: 7,
-    height: 7,
+    width: 9,
+    height: 9,
     tintColor: '#10B981',
     marginRight: 2,
   },
 
   verifiedStoreText: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   storeArrowButton: {
-    width: 25,
-    height: 25,
+    width: 33,
+    height: 33,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   storeArrow: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#8DA2B5',
   },
 
   storeStats: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 8,
-    paddingTop: 7,
+    marginTop: 10,
+    paddingTop: 9,
     borderTopWidth: 1,
     borderTopColor: '#1C354A',
   },
@@ -1325,31 +1340,31 @@ const styles = StyleSheet.create({
 
   storeStatDivider: {
     width: 1,
-    height: 25,
+    height: 33,
     backgroundColor: '#1E364B',
   },
 
   storeStatIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#6EA7FF',
   },
 
   storeStatIconNoTint: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
   },
 
   storeStatValue: {
     color: '#E5EDF5',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
     marginTop: 2,
   },
 
   storeStatLabel: {
     color: '#71889B',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 1,
   },
 
@@ -1358,8 +1373,8 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   sectionHeader: {
-    marginTop: 10,
-    marginBottom: 6,
+    marginTop: 13,
+    marginBottom: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -1367,13 +1382,13 @@ const styles = StyleSheet.create({
 
   sectionTitle: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
   },
 
   sectionAction: {
     color: '#6EA7FF',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '600',
   },
 
@@ -1389,31 +1404,34 @@ const styles = StyleSheet.create({
 
   specCard: {
     width: '48.5%',
-    minHeight: 58,
+    minHeight: 75,
     backgroundColor: '#102438',
-    borderRadius: 7,
-    padding: 7,
-    marginBottom: 6,
+    borderRadius: 14,
+    padding: 9,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   specIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#6EA7FF',
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   specLabel: {
     color: '#71879A',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '700',
   },
 
   specValue: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
-    marginTop: 3,
+    marginTop: 4,
   },
 
   /* =====================================================
@@ -1422,8 +1440,11 @@ const styles = StyleSheet.create({
 
   availabilityCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 7,
+    borderRadius: 14,
+    padding: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   availabilityRow: {
@@ -1438,38 +1459,38 @@ const styles = StyleSheet.create({
   },
 
   availabilityCheck: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
     backgroundColor: 'rgba(16,185,129,0.15)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   availabilityCheckIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#10B981',
   },
 
   storeSmallDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 6,
+    width: 8,
+    height: 8,
+    borderRadius: 8,
     backgroundColor: '#6F879B',
-    marginHorizontal: 7,
+    marginHorizontal: 9,
   },
 
   availabilityStore: {
     color: '#E7EEF5',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   availabilityLocation: {
     color: '#74899C',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 2,
   },
 
@@ -1479,32 +1500,32 @@ const styles = StyleSheet.create({
 
   availabilityPrice: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
   },
 
   availabilityStatus: {
     color: '#10B981',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 2,
   },
 
   normalAvailability: {
     color: '#6EA7FF',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 2,
   },
 
   limitedStockText: {
     color: '#F59E0B',
-    fontSize: 4,
+    fontSize: 10,
     marginTop: 2,
   },
 
   availabilityDivider: {
     height: 1,
     backgroundColor: '#1A3448',
-    marginVertical: 7,
+    marginVertical: 9,
   },
 
   /* =====================================================
@@ -1513,26 +1534,29 @@ const styles = StyleSheet.create({
 
   tintingCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 8,
+    borderRadius: 14,
+    padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 8,
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   tintingIconBox: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: 'rgba(59,130,246,0.12)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   tintingIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#6EA7FF',
   },
 
@@ -1542,27 +1566,27 @@ const styles = StyleSheet.create({
 
   tintingTitle: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   tintingText: {
     color: '#8196A9',
-    fontSize: 5,
-    lineHeight: 7,
+    fontSize: 11,
+    lineHeight: 14,
     marginTop: 2,
   },
 
   askButton: {
     backgroundColor: '#19364E',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    borderRadius: 7,
+    paddingHorizontal: 13,
+    paddingVertical: 8,
   },
 
   askButtonText: {
     color: '#CFE0EE',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
@@ -1572,15 +1596,15 @@ const styles = StyleSheet.create({
 
   locationSectionTitle: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
-    marginTop: 10,
-    marginBottom: 6,
+    marginTop: 13,
+    marginBottom: 8,
   },
 
   mapCard: {
-    height: 115,
-    borderRadius: 8,
+    height: 150,
+    borderRadius: 12,
     overflow: 'hidden',
     position: 'relative',
   },
@@ -1591,32 +1615,36 @@ const styles = StyleSheet.create({
   },
 
   mapOverlay: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     backgroundColor: 'rgba(4,18,30,0.10)',
   },
 
   mapLocationBadge: {
     position: 'absolute',
-    left: 22,
-    bottom: 11,
+    left: 29,
+    bottom: 14,
     backgroundColor: 'rgba(7,26,44,0.9)',
-    borderRadius: 10,
+    borderRadius: 13,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 7,
-    paddingVertical: 4,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
   },
 
   mapBadgeIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   mapBadgeText: {
     color: '#DDE8F1',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   /* =====================================================
@@ -1625,14 +1653,14 @@ const styles = StyleSheet.create({
 
   mapActionRow: {
     flexDirection: 'row',
-    gap: 6,
-    marginTop: 6,
+    gap: 8,
+    marginTop: 8,
   },
 
   navigateButton: {
     flex: 1,
-    height: 40,
-    borderRadius: 7,
+    height: 52,
+    borderRadius: 9,
     backgroundColor: '#18354E',
     flexDirection: 'row',
     alignItems: 'center',
@@ -1640,27 +1668,27 @@ const styles = StyleSheet.create({
   },
 
   navigateButtonIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#6EA7FF',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   navigateButtonText: {
     color: '#FFFFFF',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   navigateButtonSubtext: {
     color: '#768C9F',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   deliveryInfoButton: {
     flex: 1,
-    height: 40,
-    borderRadius: 7,
+    height: 52,
+    borderRadius: 9,
     backgroundColor: '#AFC8FF',
     flexDirection: 'row',
     alignItems: 'center',
@@ -1668,21 +1696,21 @@ const styles = StyleSheet.create({
   },
 
   deliveryInfoIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#071A2C',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   deliveryInfoTitle: {
     color: '#071A2C',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '800',
   },
 
   deliveryInfoSubtext: {
     color: '#38516B',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   /* =====================================================
@@ -1691,14 +1719,14 @@ const styles = StyleSheet.create({
 
   cartCard: {
     flexDirection: 'row',
-    gap: 7,
-    marginTop: 8,
+    gap: 9,
+    marginTop: 10,
   },
 
   quantitySelector: {
-    width: 85,
-    height: 42,
-    borderRadius: 7,
+    width: 111,
+    height: 55,
+    borderRadius: 9,
     backgroundColor: '#102438',
     flexDirection: 'row',
     alignItems: 'center',
@@ -1706,48 +1734,49 @@ const styles = StyleSheet.create({
   },
 
   quantityButton: {
-    width: 24,
-    height: 24,
+    width: 31,
+    height: 31,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   quantityIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#9CB0C3',
   },
 
   quantityValue: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
   },
 
   addCartButton: {
     flex: 1,
-    height: 42,
+    height: 54,
     backgroundColor: '#3B82F6',
-    borderRadius: 7,
+    borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    ...SHADOW.glow,
   },
 
   cartIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#FFFFFF',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   addCartText: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
   },
 
   bottomSpacing: {
-    height: 20,
+    height: 26,
   },
 });

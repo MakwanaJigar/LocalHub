@@ -5,12 +5,14 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
   TextInput,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================================
    DUMMY ONLINE ICONS
@@ -196,16 +198,20 @@ const AskLocal = ({ navigation }) => {
   const handleCompareQuotes = () => {
     console.log('Compare Received Quotes');
 
-    // Example:
-    // navigation.navigate('CompareQuote');
+    navigation.navigate('CompareQuote');
   };
 
   const handleSendRequirement = () => {
     console.log('Send requirement to verified studios');
+
+    navigation.navigate('CompareQuote');
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView
+      style={styles.safeArea}
+      edges={['top', 'left', 'right']}
+    >
       <StatusBar
         barStyle="light-content"
         backgroundColor="#071A2C"
@@ -900,88 +906,6 @@ const AskLocal = ({ navigation }) => {
 
           <View style={styles.bottomSpacer} />
         </ScrollView>
-
-        {/* =================================================
-            BOTTOM NAV
-        ================================================= */}
-
-        <View style={styles.bottomNav}>
-          <TouchableOpacity style={styles.navItem}>
-            <Image
-              source={{
-                uri: ICONS.home,
-              }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Home
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.navItem}>
-            <Image
-              source={{
-                uri: ICONS.explore,
-              }}
-              style={[
-                styles.navIcon,
-                styles.activeNavIcon,
-              ]}
-              resizeMode="contain"
-            />
-
-            <Text
-              style={[
-                styles.navText,
-                styles.activeNavText,
-              ]}
-            >
-              Explore
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.centerNavButton}
-          >
-            <Image
-              source={{
-                uri: ICONS.plus,
-              }}
-              style={styles.centerNavIcon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.navItem}>
-            <Image
-              source={{
-                uri: ICONS.chat,
-              }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Chat
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.navItem}>
-            <Image
-              source={{
-                uri: ICONS.profile,
-              }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Profile
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -1005,8 +929,8 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 8,
-    paddingTop: 6,
+    paddingHorizontal: 10,
+    paddingTop: 8,
   },
 
   /* =========================
@@ -1017,7 +941,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   headerLeft: {
@@ -1026,74 +950,74 @@ const styles = StyleSheet.create({
   },
 
   logoBox: {
-    width: 24,
-    height: 24,
-    borderRadius: 6,
+    width: 31,
+    height: 31,
+    borderRadius: 8,
     backgroundColor: '#102438',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   logo: {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
   },
 
   brandText: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
   },
 
   exploreText: {
     color: '#8197AA',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   headerActions: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 8,
   },
 
   headerIconButton: {
-    width: 24,
-    height: 24,
-    borderRadius: 6,
+    width: 31,
+    height: 31,
+    borderRadius: 8,
     backgroundColor: '#102438',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   headerIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#D5E0EA',
   },
 
   notificationDot: {
     position: 'absolute',
-    top: 4,
-    right: 4,
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    top: 5,
+    right: 5,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#10B981',
   },
 
   profileButton: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 31,
+    height: 31,
+    borderRadius: 16,
     backgroundColor: '#AFC8FF',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   profileIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#071A2C',
   },
 
@@ -1103,9 +1027,12 @@ const styles = StyleSheet.create({
 
   heroCard: {
     backgroundColor: '#0D4B53',
-    borderRadius: 9,
-    padding: 9,
-    marginBottom: 7,
+    borderRadius: 16,
+    padding: 12,
+    marginBottom: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   heroTopRow: {
@@ -1120,53 +1047,53 @@ const styles = StyleSheet.create({
   },
 
   askIconBox: {
-    width: 29,
-    height: 29,
-    borderRadius: 7,
+    width: 38,
+    height: 38,
+    borderRadius: 9,
     backgroundColor: '#60D2DD',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   askIcon: {
-    width: 16,
-    height: 16,
+    width: 21,
+    height: 21,
     tintColor: '#07313B',
   },
 
   heroTitle: {
     color: '#FFFFFF',
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: '800',
   },
 
   aiText: {
     color: '#D7F6F6',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   smartBadge: {
     backgroundColor: '#10B981',
-    borderRadius: 12,
-    paddingHorizontal: 9,
-    paddingVertical: 4,
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
     alignItems: 'center',
   },
 
   smartBadgeText: {
     color: '#052B23',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '900',
   },
 
   heroSubtitle: {
     color: '#C8E9EA',
-    fontSize: 6,
-    lineHeight: 9,
-    marginTop: 7,
-    paddingLeft: 35,
+    fontSize: 12,
+    lineHeight: 16,
+    marginTop: 9,
+    paddingLeft: 46,
   },
 
   /* =========================
@@ -1175,9 +1102,12 @@ const styles = StyleSheet.create({
 
   requirementCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 8,
-    marginBottom: 7,
+    borderRadius: 14,
+    padding: 10,
+    marginBottom: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   requirementHeader: {
@@ -1192,15 +1122,15 @@ const styles = StyleSheet.create({
   },
 
   requirementTitleIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#77ABFF',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   requirementTitle: {
     color: '#A8BCD0',
-    fontSize: 6,
+    fontSize: 12,
   },
 
   resetButton: {
@@ -1209,24 +1139,24 @@ const styles = StyleSheet.create({
   },
 
   resetIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#8499AC',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   resetText: {
     color: '#8499AC',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   requirementInput: {
-    minHeight: 52,
+    minHeight: 68,
     color: '#FFFFFF',
-    fontSize: 7,
-    lineHeight: 10,
+    fontSize: 13,
+    lineHeight: 17,
     textAlignVertical: 'top',
-    paddingVertical: 7,
+    paddingVertical: 9,
   },
 
   requirementActions: {
@@ -1237,44 +1167,44 @@ const styles = StyleSheet.create({
 
   attachmentActions: {
     flexDirection: 'row',
-    gap: 5,
+    gap: 7,
   },
 
   smallActionButton: {
-    width: 24,
-    height: 22,
-    borderRadius: 5,
+    width: 31,
+    height: 29,
+    borderRadius: 7,
     backgroundColor: '#152F45',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   smallActionIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#AAC0D3',
   },
 
   parseButton: {
-    height: 25,
+    height: 33,
     backgroundColor: '#3B82F6',
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    borderRadius: 7,
+    paddingHorizontal: 13,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   parseButtonText: {
     color: '#FFFFFF',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   parseArrow: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#FFFFFF',
-    marginLeft: 4,
+    marginLeft: 5,
   },
 
   /* =========================
@@ -1284,31 +1214,31 @@ const styles = StyleSheet.create({
   suggestionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   suggestionTitle: {
     color: '#8096AA',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
   useSuggestionText: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   suggestionRow: {
     flexDirection: 'row',
-    gap: 6,
-    marginBottom: 7,
+    gap: 8,
+    marginBottom: 9,
   },
 
   suggestionButton: {
     flex: 1,
-    height: 27,
+    height: 35,
     backgroundColor: '#102438',
-    borderRadius: 6,
+    borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1319,15 +1249,15 @@ const styles = StyleSheet.create({
   },
 
   suggestionIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#75A9FF',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   suggestionText: {
     color: '#D6E0E9',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '600',
   },
 
@@ -1337,40 +1267,43 @@ const styles = StyleSheet.create({
 
   scopeCard: {
     backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 8,
-    marginBottom: 8,
+    borderRadius: 14,
+    padding: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   scopeHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   scopeTitle: {
     color: '#FFFFFF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '800',
-    lineHeight: 10,
+    lineHeight: 20,
   },
 
   scopeBadge: {
     backgroundColor: '#233A4C',
-    borderRadius: 8,
-    paddingHorizontal: 6,
-    paddingVertical: 3,
+    borderRadius: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
 
   scopeBadgeText: {
     color: '#AFC7FF',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
   scopeBadgeSubtext: {
     color: '#7890A4',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   scopeGrid: {
@@ -1382,39 +1315,39 @@ const styles = StyleSheet.create({
   scopeItem: {
     width: '48.5%',
     backgroundColor: '#0B1E30',
-    borderRadius: 6,
-    padding: 7,
-    marginBottom: 6,
+    borderRadius: 8,
+    padding: 9,
+    marginBottom: 8,
   },
 
   scopeItemIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#6EA7FF',
-    marginBottom: 4,
+    marginBottom: 5,
   },
 
   scopeItemLabel: {
     color: '#778DA2',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   scopeItemValue: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
     marginTop: 2,
   },
 
   scopeItemGreen: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
   scopeItemSubvalue: {
     color: '#8296A9',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 2,
   },
 
@@ -1425,15 +1358,15 @@ const styles = StyleSheet.create({
   },
 
   scopeFooterIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   scopeFooterText: {
     color: '#93A7B9',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   /* =========================
@@ -1443,7 +1376,7 @@ const styles = StyleSheet.create({
   contractorHeading: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   contractorTitleRow: {
@@ -1452,48 +1385,48 @@ const styles = StyleSheet.create({
   },
 
   sparkleIcon: {
-    width: 12,
-    height: 12,
-    marginRight: 4,
+    width: 16,
+    height: 16,
+    marginRight: 5,
   },
 
   contractorTitle: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
-    lineHeight: 9,
+    lineHeight: 17,
   },
 
   availableNow: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
   filterRow: {
-    gap: 5,
-    paddingBottom: 7,
+    gap: 7,
+    paddingBottom: 9,
   },
 
   filterButton: {
-    height: 22,
-    borderRadius: 11,
+    height: 29,
+    borderRadius: 14,
     backgroundColor: '#102438',
-    paddingHorizontal: 7,
+    paddingHorizontal: 9,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   filterIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#8DA1B5',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   filterText: {
     color: '#B7C5D2',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   /* =========================
@@ -1502,22 +1435,25 @@ const styles = StyleSheet.create({
 
   studioCard: {
     backgroundColor: '#102438',
-    borderRadius: 7,
-    padding: 6,
+    borderRadius: 14,
+    padding: 8,
     flexDirection: 'row',
-    marginBottom: 6,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   studioImage: {
-    width: 65,
-    height: 55,
-    borderRadius: 5,
+    width: 85,
+    height: 72,
+    borderRadius: 7,
     backgroundColor: '#1A3247',
   },
 
   studioContent: {
     flex: 1,
-    paddingLeft: 6,
+    paddingLeft: 8,
   },
 
   studioTopRow: {
@@ -1527,21 +1463,21 @@ const styles = StyleSheet.create({
 
   studioName: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
     flex: 1,
   },
 
   matchBadge: {
     backgroundColor: 'rgba(16,185,129,0.13)',
-    borderRadius: 5,
-    paddingHorizontal: 4,
+    borderRadius: 7,
+    paddingHorizontal: 5,
     paddingVertical: 2,
   },
 
   matchBadgeText: {
     color: '#10B981',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '700',
   },
 
@@ -1552,27 +1488,27 @@ const styles = StyleSheet.create({
   },
 
   ratingStar: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     marginRight: 2,
   },
 
   ratingText: {
     color: '#F4B94A',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
   reviewText: {
     color: '#768B9F',
-    fontSize: 4,
+    fontSize: 10,
     marginLeft: 2,
   },
 
   studioMetaRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 3,
+    marginTop: 4,
   },
 
   metaItem: {
@@ -1581,15 +1517,15 @@ const styles = StyleSheet.create({
   },
 
   metaIcon: {
-    width: 7,
-    height: 7,
+    width: 9,
+    height: 9,
     tintColor: '#10B981',
     marginRight: 2,
   },
 
   metaText: {
     color: '#869AAC',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   metaDot: {
@@ -1597,31 +1533,31 @@ const styles = StyleSheet.create({
     height: 2,
     borderRadius: 2,
     backgroundColor: '#60758A',
-    marginHorizontal: 4,
+    marginHorizontal: 5,
   },
 
   studioBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 4,
+    marginTop: 5,
   },
 
   priceText: {
     color: '#10B981',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
   },
 
   deliveryBadge: {
     backgroundColor: '#1B3850',
-    borderRadius: 4,
-    paddingHorizontal: 4,
+    borderRadius: 5,
+    paddingHorizontal: 5,
     paddingVertical: 2,
   },
 
   deliveryText: {
     color: '#8FB2DA',
-    fontSize: 4,
+    fontSize: 10,
     fontWeight: '600',
   },
 
@@ -1631,12 +1567,15 @@ const styles = StyleSheet.create({
 
   projectInfoCard: {
     backgroundColor: '#0B1E30',
-    borderRadius: 7,
+    borderRadius: 14,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 7,
-    paddingHorizontal: 8,
-    marginBottom: 7,
+    paddingVertical: 9,
+    paddingHorizontal: 10,
+    marginBottom: 9,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   projectInfoItem: {
@@ -1645,20 +1584,20 @@ const styles = StyleSheet.create({
   },
 
   projectInfoIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#10B981',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   projectInfoLabel: {
     color: '#8499AC',
-    fontSize: 4,
+    fontSize: 10,
   },
 
   projectInfoValue: {
     color: '#DCE5ED',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
   },
 
@@ -1667,52 +1606,53 @@ const styles = StyleSheet.create({
   ========================= */
 
   compareButton: {
-    height: 32,
+    height: 42,
     backgroundColor: '#4C8EF7',
-    borderRadius: 6,
+    borderRadius: 8,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   compareIcon: {
-    width: 11,
-    height: 11,
+    width: 14,
+    height: 14,
     tintColor: '#071A2C',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   compareText: {
     color: '#071A2C',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   sendRequirementButton: {
-    height: 31,
+    height: 44,
     backgroundColor: '#102C3C',
-    borderRadius: 6,
+    borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    ...SHADOW.glow,
   },
 
   sendRequirementIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#10B981',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   sendRequirementText: {
     color: '#CDE0EC',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   bottomSpacer: {
-    height: 70,
+    height: 26,
   },
 
   /* =========================
@@ -1724,7 +1664,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 58,
+    height: 75,
     backgroundColor: '#081A2B',
     borderTopWidth: 1,
     borderTopColor: '#132B42',
@@ -1734,15 +1674,15 @@ const styles = StyleSheet.create({
   },
 
   navItem: {
-    width: 48,
+    width: 62,
     alignItems: 'center',
   },
 
   navIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#6D8296',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   activeNavIcon: {
@@ -1751,7 +1691,7 @@ const styles = StyleSheet.create({
 
   navText: {
     color: '#71869A',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   activeNavText: {
@@ -1759,18 +1699,18 @@ const styles = StyleSheet.create({
   },
 
   centerNavButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
+    width: 55,
+    height: 55,
+    borderRadius: 27,
     backgroundColor: '#3B82F6',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -20,
+    marginTop: -26,
   },
 
   centerNavIcon: {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
     tintColor: '#FFFFFF',
   },
 });

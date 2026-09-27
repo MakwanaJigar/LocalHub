@@ -5,7 +5,6 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   TextInput,
   Image,
@@ -13,6 +12,9 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================
    IMAGE ICONS
@@ -27,7 +29,7 @@ import {
 // import whatsappIcon from '../assets/icons/whatsapp.png';
 // import fireIcon from '../assets/icons/fire.png';
 
-const Otp = ({ navigation }) => {
+const Otp = ({ navigation, route }) => {
   const [otp, setOtp] = useState(['5', '8', '2', '', '', '']);
   const [seconds, setSeconds] = useState(30);
 
@@ -107,8 +109,13 @@ const Otp = ({ navigation }) => {
 
     // Add API call here.
 
-    // Example:
-    // navigation.replace('Home');
+    // Password-reset flow continues to ResetPassword,
+    // login / register flow goes to the app.
+    if (route?.params?.flow === 'reset') {
+      navigation.navigate('ResetPassword');
+    } else {
+      navigation.replace('MainTabs');
+    }
   };
 
   /* =========================================
@@ -224,7 +231,7 @@ const Otp = ({ navigation }) => {
               onPress={() => {
                 console.log('Edit number');
 
-                // navigation.goBack();
+                navigation.goBack();
               }}
             >
               <Text style={styles.editText}>
@@ -402,9 +409,9 @@ const styles = StyleSheet.create({
 
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 14,
-    paddingTop: 10,
-    paddingBottom: 22,
+    paddingHorizontal: 18,
+    paddingTop: 13,
+    paddingBottom: 29,
     backgroundColor: '#071A2C',
   },
 
@@ -416,44 +423,44 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 17,
+    marginBottom: 22,
   },
 
   backButton: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 39,
+    height: 39,
+    borderRadius: 20,
     backgroundColor: '#11283C',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   backIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#E2EBF4',
   },
 
   secureNodeBadge: {
-    minHeight: 18,
-    paddingHorizontal: 9,
-    borderRadius: 12,
+    minHeight: 23,
+    paddingHorizontal: 12,
+    borderRadius: 16,
     backgroundColor: '#142C3E',
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   secureNodeDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   secureNodeText: {
     color: '#3FDFAB',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
     letterSpacing: 0.3,
   },
@@ -463,36 +470,39 @@ const styles = StyleSheet.create({
   ========================================= */
 
   verifyCard: {
-    minHeight: 145,
+    minHeight: 189,
     backgroundColor: '#12283B',
-    borderRadius: 9,
+    borderRadius: 16,
     alignItems: 'center',
-    paddingHorizontal: 14,
-    paddingTop: 17,
-    paddingBottom: 13,
-    marginBottom: 15,
+    paddingHorizontal: 18,
+    paddingTop: 22,
+    paddingBottom: 17,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   heroIconWrapper: {
-    width: 55,
-    height: 55,
+    width: 72,
+    height: 72,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   heroIconCircle: {
-    width: 49,
-    height: 49,
-    borderRadius: 30,
+    width: 64,
+    height: 64,
+    borderRadius: 39,
     backgroundColor: '#405B6E',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   heroShieldIcon: {
-    width: 23,
-    height: 23,
+    width: 30,
+    height: 30,
     tintColor: '#B3CAFF',
   },
 
@@ -500,9 +510,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -1,
     right: 0,
-    width: 20,
-    height: 20,
-    borderRadius: 20,
+    width: 26,
+    height: 26,
+    borderRadius: 26,
     backgroundColor: '#AFC6FF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -511,48 +521,48 @@ const styles = StyleSheet.create({
   },
 
   heroMessageIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#36518B',
   },
 
   title: {
     color: '#EAF0F7',
-    fontSize: 17,
+    fontSize: 24,
     fontWeight: '800',
-    marginTop: 5,
+    marginTop: 7,
   },
 
   description: {
     color: '#B8C7D6',
-    fontSize: 8,
-    marginTop: 5,
+    fontSize: 14,
+    marginTop: 7,
   },
 
   phoneNumber: {
     color: '#EAF2FA',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
     marginTop: 2,
   },
 
   editRow: {
-    marginTop: 3,
+    marginTop: 4,
     flexDirection: 'row',
     alignItems: 'center',
   },
 
   editText: {
     color: '#A3BFFF',
-    fontSize: 7,
+    fontSize: 13,
     textDecorationLine: 'underline',
   },
 
   editIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#A3BFFF',
-    marginLeft: 3,
+    marginLeft: 4,
   },
 
   /* =========================================
@@ -562,16 +572,16 @@ const styles = StyleSheet.create({
   otpContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 14,
+    marginBottom: 18,
   },
 
   otpInput: {
-    width: 33,
-    height: 37,
-    borderRadius: 6,
+    width: 43,
+    height: 48,
+    borderRadius: 12,
     backgroundColor: '#12273A',
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 22,
     fontWeight: '700',
     paddingVertical: 0,
     borderWidth: 1,
@@ -596,7 +606,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 16,
+    marginBottom: 21,
   },
 
   countdownRow: {
@@ -605,26 +615,26 @@ const styles = StyleSheet.create({
   },
 
   fireIcon: {
-    width: 11,
-    height: 11,
-    marginRight: 4,
+    width: 14,
+    height: 14,
+    marginRight: 5,
   },
 
   resendInfoText: {
     color: '#BDC9D5',
-    fontSize: 7,
+    fontSize: 13,
   },
 
   timerText: {
     color: '#F0F5FA',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
     marginLeft: 2,
   },
 
   resendLink: {
     color: '#75A7FF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
@@ -637,25 +647,26 @@ const styles = StyleSheet.create({
   ========================================= */
 
   verifyButton: {
-    height: 43,
-    borderRadius: 7,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#AFC7FF',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10,
+    marginBottom: 13,
+    ...SHADOW.glow,
   },
 
   verifyButtonText: {
     color: '#071A2C',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   verifyArrow: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#071A2C',
   },
 
@@ -664,25 +675,28 @@ const styles = StyleSheet.create({
   ========================================= */
 
   securityCard: {
-    height: 26,
-    borderRadius: 6,
+    height: 34,
+    borderRadius: 14,
     backgroundColor: '#091D2D',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 26,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   securityIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#10B981',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   securityText: {
     color: '#D5DFE9',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '600',
   },
 
@@ -696,14 +710,14 @@ const styles = StyleSheet.create({
 
   whatsappLabel: {
     color: '#B6C4D2',
-    fontSize: 8,
-    marginBottom: 7,
+    fontSize: 14,
+    marginBottom: 9,
   },
 
   whatsappButton: {
     width: '88%',
-    minHeight: 30,
-    borderRadius: 7,
+    minHeight: 39,
+    borderRadius: 9,
     backgroundColor: '#172C3E',
     flexDirection: 'row',
     alignItems: 'center',
@@ -711,14 +725,14 @@ const styles = StyleSheet.create({
   },
 
   whatsappIcon: {
-    width: 12,
-    height: 12,
-    marginRight: 5,
+    width: 16,
+    height: 16,
+    marginRight: 7,
   },
 
   whatsappButtonText: {
     color: '#DCE6EF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
   },
 });

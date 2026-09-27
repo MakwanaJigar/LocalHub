@@ -6,19 +6,21 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 /* =========================================
    IMAGES
 ========================================= */
 
 import logo from '../assets/logo.png';
+
+import { SHADOW } from '../theme';
 
 // import customerIcon from '../assets/icons/customer.png';
 // import businessIcon from '../assets/icons/business.png';
@@ -64,10 +66,9 @@ const Register = ({ navigation }) => {
 
     // API call here
 
-    // Example:
-    // navigation.navigate('OTPVerification', {
-    //   mobile,
-    // });
+    navigation.navigate('OTP', {
+      mobile,
+    });
   };
 
   /* =========================================
@@ -593,9 +594,9 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     backgroundColor: '#071A2C',
-    paddingHorizontal: 14,
-    paddingTop: 14,
-    paddingBottom: 30,
+    paddingHorizontal: 18,
+    paddingTop: 18,
+    paddingBottom: 39,
   },
 
   /* =========================================
@@ -606,29 +607,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   networkBadge: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'rgba(16,185,129,0.08)',
-    paddingHorizontal: 7,
-    paddingVertical: 4,
-    borderRadius: 20,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    borderRadius: 26,
   },
 
   networkDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   networkText: {
     color: '#32D7A1',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
     letterSpacing: 0.3,
   },
@@ -639,14 +640,14 @@ const styles = StyleSheet.create({
   },
 
   setupIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#F59E0B',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   setupText: {
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
     color: '#F2F6FA',
   },
@@ -656,29 +657,29 @@ const styles = StyleSheet.create({
   ========================================= */
 
   headerSection: {
-    marginBottom: 15,
+    marginBottom: 20,
   },
 
   title: {
     color: '#F5F8FC',
-    fontSize: 24,
+    fontSize: 31,
     fontWeight: '800',
     letterSpacing: -0.6,
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   subtitle: {
     color: '#AEBED0',
-    fontSize: 9,
-    lineHeight: 13,
+    fontSize: 15,
+    lineHeight: 20,
     maxWidth: '90%',
   },
 
   sectionLabel: {
     color: '#DDE8F2',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   /* =========================================
@@ -686,16 +687,17 @@ const styles = StyleSheet.create({
   ========================================= */
 
   accountCard: {
-    minHeight: 56,
+    minHeight: 73,
     backgroundColor: '#102238',
-    borderRadius: 8,
+    borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 9,
-    paddingVertical: 7,
-    marginBottom: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 9,
+    marginBottom: 8,
     borderWidth: 1,
     borderColor: 'transparent',
+    ...SHADOW.soft,
   },
 
   accountCardActive: {
@@ -704,13 +706,13 @@ const styles = StyleSheet.create({
   },
 
   accountIconBox: {
-    width: 29,
-    height: 29,
-    borderRadius: 7,
+    width: 38,
+    height: 38,
+    borderRadius: 9,
     backgroundColor: '#1C344B',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   accountIconBoxActive: {
@@ -718,8 +720,8 @@ const styles = StyleSheet.create({
   },
 
   accountIcon: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
     tintColor: '#AFC8FF',
   },
 
@@ -729,25 +731,25 @@ const styles = StyleSheet.create({
 
   accountTitle: {
     color: '#FFFFFF',
-    fontSize: 11,
+    fontSize: 17,
     fontWeight: '700',
   },
 
   accountDescription: {
     color: '#9CB0C4',
-    fontSize: 7,
-    lineHeight: 10,
+    fontSize: 13,
+    lineHeight: 17,
     marginTop: 2,
   },
 
   radioOuter: {
-    width: 13,
-    height: 13,
-    borderRadius: 13,
+    width: 17,
+    height: 17,
+    borderRadius: 17,
     backgroundColor: '#294157',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 7,
+    marginLeft: 9,
   },
 
   radioOuterActive: {
@@ -755,9 +757,9 @@ const styles = StyleSheet.create({
   },
 
   radioInner: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#3B82F6',
   },
 
@@ -767,47 +769,47 @@ const styles = StyleSheet.create({
 
   inputLabel: {
     color: '#DDE7F1',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
-    marginTop: 6,
-    marginBottom: 5,
+    marginTop: 8,
+    marginBottom: 7,
   },
 
   inputLabelNoMargin: {
     color: '#DDE7F1',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
   },
 
   inputContainer: {
-    height: 40,
+    height: 52,
     backgroundColor: '#102238',
-    borderRadius: 7,
+    borderRadius: 9,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 9,
+    paddingHorizontal: 12,
     borderWidth: 1,
     borderColor: '#132B42',
   },
 
   inputLeftIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#8CA5BB',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   locationInputIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#62A0FF',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   input: {
     flex: 1,
     color: '#F2F6FA',
-    fontSize: 9,
+    fontSize: 15,
     paddingVertical: 0,
   },
 
@@ -817,48 +819,48 @@ const styles = StyleSheet.create({
   },
 
   flag: {
-    fontSize: 10,
-    marginRight: 3,
+    fontSize: 16,
+    marginRight: 4,
   },
 
   countryCode: {
-    fontSize: 8,
+    fontSize: 14,
     color: '#E1E9F2',
     fontWeight: '600',
   },
 
   smallChevron: {
-    width: 7,
-    height: 7,
+    width: 9,
+    height: 9,
     tintColor: '#8298AD',
-    marginLeft: 3,
+    marginLeft: 4,
   },
 
   inputDivider: {
     width: 1,
-    height: 18,
+    height: 23,
     backgroundColor: '#294056',
-    marginHorizontal: 7,
+    marginHorizontal: 9,
   },
 
   validIconContainer: {
-    width: 15,
-    height: 15,
-    borderRadius: 15,
+    width: 20,
+    height: 20,
+    borderRadius: 20,
     backgroundColor: '#10B981',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   validIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#071A2C',
   },
 
   chevronIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#A0B2C5',
   },
 
@@ -867,8 +869,8 @@ const styles = StyleSheet.create({
   ========================================= */
 
   passwordLabelRow: {
-    marginTop: 7,
-    marginBottom: 5,
+    marginTop: 9,
+    marginBottom: 7,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -876,19 +878,19 @@ const styles = StyleSheet.create({
 
   minimumText: {
     color: '#71869B',
-    fontSize: 7,
+    fontSize: 13,
   },
 
   eyeButton: {
-    width: 25,
-    height: 30,
+    width: 33,
+    height: 39,
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
 
   eyeIcon: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
     tintColor: '#8FA5BA',
   },
 
@@ -899,8 +901,8 @@ const styles = StyleSheet.create({
   requirementRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 6,
-    marginBottom: 8,
+    marginTop: 8,
+    marginBottom: 10,
   },
 
   requirementItem: {
@@ -909,24 +911,24 @@ const styles = StyleSheet.create({
   },
 
   requirementDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     borderWidth: 1,
     borderColor: '#657B91',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   requirementText: {
     color: '#72869B',
-    fontSize: 6,
+    fontSize: 12,
   },
 
   requirementDivider: {
     width: 1,
-    height: 8,
+    height: 10,
     backgroundColor: '#293F54',
-    marginHorizontal: 7,
+    marginHorizontal: 9,
   },
 
   /* =========================================
@@ -936,16 +938,16 @@ const styles = StyleSheet.create({
   termsRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 10,
+    marginBottom: 13,
   },
 
   checkbox: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     borderRadius: 2,
     borderWidth: 1,
     borderColor: '#8598AC',
-    marginRight: 6,
+    marginRight: 8,
     marginTop: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -958,16 +960,16 @@ const styles = StyleSheet.create({
   },
 
   checkboxCheck: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#071A2C',
   },
 
   termsText: {
     flex: 1,
     color: '#C4D0DC',
-    fontSize: 7,
-    lineHeight: 11,
+    fontSize: 13,
+    lineHeight: 17,
   },
 
   termsLink: {
@@ -980,13 +982,14 @@ const styles = StyleSheet.create({
   ========================================= */
 
   continueButton: {
-    height: 43,
-    borderRadius: 7,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#AFC8FF',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 13,
+    ...SHADOW.glow,
   },
 
   continueButtonDisabled: {
@@ -995,14 +998,14 @@ const styles = StyleSheet.create({
 
   continueButtonText: {
     color: '#071A2C',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   continueArrow: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#071A2C',
   },
 
@@ -1011,25 +1014,28 @@ const styles = StyleSheet.create({
   ========================================= */
 
   communityCard: {
-    minHeight: 46,
-    borderRadius: 8,
+    minHeight: 60,
+    borderRadius: 14,
     backgroundColor: '#0A1D30',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 8,
-    marginBottom: 12,
+    paddingHorizontal: 10,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   avatarWrapper: {
-    width: 65,
-    height: 28,
+    width: 85,
+    height: 36,
     justifyContent: 'center',
   },
 
   communityImage: {
-    width: 61,
-    height: 26,
-    borderRadius: 15,
+    width: 79,
+    height: 34,
+    borderRadius: 20,
   },
 
   communityTextContainer: {
@@ -1038,13 +1044,13 @@ const styles = StyleSheet.create({
 
   communityTitle: {
     color: '#39D6A1',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   communitySubtitle: {
     color: '#99ABBD',
-    fontSize: 6,
+    fontSize: 12,
     marginTop: 2,
   },
 
@@ -1056,18 +1062,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 5,
+    paddingBottom: 7,
   },
 
   loginText: {
     color: '#C6D2DE',
-    fontSize: 8,
-    marginRight: 4,
+    fontSize: 14,
+    marginRight: 5,
   },
 
   loginLink: {
     color: '#79AAFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
   },
 });

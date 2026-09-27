@@ -5,13 +5,15 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-//   SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
   TextInput,
-  SafeAreaView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
+import logoImage from '../assets/logo.png';
 
 /* =====================================================
    DUMMY ONLINE ICONS
@@ -126,6 +128,12 @@ const IMAGES = {
 
   deal2:
     'https://picsum.photos/seed/localhub-deal-2/400/300',
+
+  deal3:
+    'https://picsum.photos/seed/localhub-deal-3/400/300',
+
+  banner:
+    'https://picsum.photos/seed/localhub-banner/800/400',
 };
 
 const Home = ({ navigation }) => {
@@ -220,10 +228,23 @@ const Home = ({ navigation }) => {
       price: '₹299',
       oldPrice: '₹399',
     },
+
+    {
+      id: 3,
+      image: IMAGES.deal3,
+      tag: 'NEW',
+      name: 'Homemade Gujarati Thali',
+      shop: 'Swad Kitchen',
+      price: '₹179',
+      oldPrice: '₹229',
+    },
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView
+      style={styles.safeArea}
+      edges={['top', 'left', 'right']}
+    >
       <StatusBar
         barStyle="light-content"
         backgroundColor="#071A2C"
@@ -242,9 +263,7 @@ const Home = ({ navigation }) => {
             <View style={styles.headerLeft}>
               <View style={styles.logoBox}>
                 <Image
-                  source={{
-                    uri: ICONS.logo,
-                  }}
+                  source={logoImage}
                   style={styles.logo}
                   resizeMode="contain"
                 />
@@ -282,6 +301,7 @@ const Home = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.headerIconButton}
                 activeOpacity={0.8}
+                onPress={() => navigation.navigate('Notification')}
               >
                 <Image
                   source={{
@@ -297,6 +317,7 @@ const Home = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.profileAvatar}
                 activeOpacity={0.8}
+                onPress={() => navigation.navigate('UserProfile')}
               >
                 <Image
                   source={{
@@ -365,6 +386,43 @@ const Home = ({ navigation }) => {
               />
             </TouchableOpacity>
           </View>
+
+          {/* =================================================
+              PROMO BANNER
+          ================================================= */}
+
+          <TouchableOpacity
+            style={styles.banner}
+            activeOpacity={0.9}
+          >
+            <Image
+              source={{
+                uri: IMAGES.banner,
+              }}
+              style={styles.bannerImage}
+              resizeMode="cover"
+            />
+
+            <View style={styles.bannerOverlay} />
+
+            <View style={styles.bannerContent}>
+              <View style={styles.bannerTag}>
+                <Text style={styles.bannerTagText}>
+                  WEEKEND SPECIAL
+                </Text>
+              </View>
+
+              <Text style={styles.bannerTitle}>
+                Up to 40% off{'\n'}at local stores
+              </Text>
+
+              <View style={styles.bannerButton}>
+                <Text style={styles.bannerButtonText}>
+                  Explore Deals
+                </Text>
+              </View>
+            </View>
+          </TouchableOpacity>
 
           {/* =================================================
               QUICK ACTIONS
@@ -641,6 +699,7 @@ const Home = ({ navigation }) => {
                   <TouchableOpacity
                     style={styles.viewStoreButton}
                     activeOpacity={0.8}
+                    onPress={() => navigation.navigate('ServiceDetail')}
                   >
                     <Text style={styles.viewStoreText}>
                       View Store
@@ -677,60 +736,69 @@ const Home = ({ navigation }) => {
             </View>
           </View>
 
-          {trendingDeals.map(deal => (
-            <View
-              key={deal.id}
-              style={styles.dealCard}
-            >
-              <Image
-                source={{
-                  uri: deal.image,
-                }}
-                style={styles.dealImage}
-                resizeMode="cover"
-              />
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.dealScroll}
+          >
+            {trendingDeals.map(deal => (
+              <View
+                key={deal.id}
+                style={styles.dealCard}
+              >
+                <View>
+                  <Image
+                    source={{
+                      uri: deal.image,
+                    }}
+                    style={styles.dealImage}
+                    resizeMode="cover"
+                  />
 
-              <View style={styles.dealContent}>
-                <View style={styles.dealTag}>
-                  <Text style={styles.dealTagText}>
-                    {deal.tag}
-                  </Text>
-                </View>
-
-                <Text
-                  style={styles.dealTitle}
-                  numberOfLines={2}
-                >
-                  {deal.name}
-                </Text>
-
-                <Text style={styles.dealShop}>
-                  {deal.shop}
-                </Text>
-
-                <View style={styles.dealBottom}>
-                  <View style={styles.priceRow}>
-                    <Text style={styles.currentPrice}>
-                      {deal.price}
-                    </Text>
-
-                    <Text style={styles.oldPrice}>
-                      {deal.oldPrice}
+                  <View style={styles.dealTag}>
+                    <Text style={styles.dealTagText}>
+                      {deal.tag}
                     </Text>
                   </View>
+                </View>
 
-                  <TouchableOpacity
-                    style={styles.shopButton}
-                    activeOpacity={0.8}
+                <View style={styles.dealContent}>
+                  <Text
+                    style={styles.dealTitle}
+                    numberOfLines={2}
                   >
-                    <Text style={styles.shopButtonText}>
-                      Shop
-                    </Text>
-                  </TouchableOpacity>
+                    {deal.name}
+                  </Text>
+
+                  <Text style={styles.dealShop}>
+                    {deal.shop}
+                  </Text>
+
+                  <View style={styles.dealBottom}>
+                    <View style={styles.priceRow}>
+                      <Text style={styles.currentPrice}>
+                        {deal.price}
+                      </Text>
+
+                      <Text style={styles.oldPrice}>
+                        {deal.oldPrice}
+                      </Text>
+                    </View>
+
+                    <TouchableOpacity
+                      style={styles.shopButton}
+                      activeOpacity={0.8}
+                      onPress={() => navigation.navigate('ProductDetail')}
+                    >
+                      <Text style={styles.shopButtonText}>
+                        Shop
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-            </View>
-          ))}
+            ))}
+          </ScrollView>
 
           {/* =================================================
               POPULAR SERVICES
@@ -751,7 +819,9 @@ const Home = ({ navigation }) => {
               </Text>
             </View>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('AskLocal')}
+            >
               <Text style={styles.seeAllText}>
                 View All
               </Text>
@@ -878,115 +948,10 @@ const Home = ({ navigation }) => {
             </View>
           </View>
 
-          {/* Extra space for fixed bottom bar */}
+          {/* Extra space above the tab bar */}
 
           <View style={styles.bottomSpace} />
         </ScrollView>
-
-        {/* =================================================
-            BOTTOM NAVIGATION
-        ================================================= */}
-
-        <View style={styles.bottomNavigation}>
-          {/* HOME */}
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{
-                uri: ICONS.home,
-              }}
-              style={[
-                styles.navIcon,
-                styles.navIconActive,
-              ]}
-              resizeMode="contain"
-            />
-
-            <Text
-              style={[
-                styles.navText,
-                styles.navTextActive,
-              ]}
-            >
-              Home
-            </Text>
-          </TouchableOpacity>
-
-          {/* ORDERS */}
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{
-                uri: ICONS.orders,
-              }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Orders
-            </Text>
-          </TouchableOpacity>
-
-          {/* CENTER BUTTON */}
-
-          <TouchableOpacity
-            style={styles.mainNavButton}
-            activeOpacity={0.85}
-          >
-            <Image
-              source={{
-                uri: ICONS.plus,
-              }}
-              style={styles.mainNavIcon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-
-          {/* CHAT */}
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{
-                uri: ICONS.chat,
-              }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Chat
-            </Text>
-          </TouchableOpacity>
-
-          {/* PROFILE */}
-
-          <TouchableOpacity
-            style={styles.navItem}
-            activeOpacity={0.8}
-          >
-            <Image
-              source={{
-                uri: ICONS.profile,
-              }}
-              style={styles.navIcon}
-              resizeMode="contain"
-            />
-
-            <Text style={styles.navText}>
-              Profile
-            </Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -1010,8 +975,8 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 10,
-    paddingTop: 8,
+    paddingHorizontal: 13,
+    paddingTop: 10,
   },
 
   /* =====================================================
@@ -1022,7 +987,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   headerLeft: {
@@ -1031,24 +996,25 @@ const styles = StyleSheet.create({
   },
 
   logoBox: {
-    width: 30,
-    height: 30,
-    borderRadius: 8,
+    width: 42,
+    height: 42,
+    borderRadius: 12,
     backgroundColor: '#10263A',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   logo: {
-    width: 24,
-    height: 24,
+    width: 31,
+    height: 31,
   },
 
   brandText: {
     color: '#FFFFFF',
-    fontSize: 11,
+    fontSize: 20,
     fontWeight: '800',
+    letterSpacing: 0.3,
   },
 
   locationRow: {
@@ -1058,66 +1024,70 @@ const styles = StyleSheet.create({
   },
 
   smallLocationIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#10B981',
     marginRight: 2,
   },
 
   locationText: {
     color: '#9FB0C0',
-    fontSize: 6,
+    fontSize: 12,
   },
 
   locationArrow: {
     color: '#8CA0B4',
-    fontSize: 7,
+    fontSize: 13,
     marginLeft: 2,
   },
 
   headerActions: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 7,
+    gap: 9,
   },
 
   headerIconButton: {
-    width: 26,
-    height: 26,
-    borderRadius: 7,
+    width: 40,
+    height: 40,
+    borderRadius: 12,
     backgroundColor: '#10263A',
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
   },
 
   headerIcon: {
-    width: 13,
-    height: 13,
+    width: 18,
+    height: 18,
     tintColor: '#B8C9DA',
   },
 
   notificationDot: {
     position: 'absolute',
-    right: 5,
-    top: 5,
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    right: 9,
+    top: 9,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
     backgroundColor: '#10B981',
+    borderWidth: 1.5,
+    borderColor: '#10263A',
   },
 
   profileAvatar: {
-    width: 27,
-    height: 27,
-    borderRadius: 14,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     backgroundColor: '#AFC8FF',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   profileTopIcon: {
-    width: 14,
-    height: 14,
+    width: 20,
+    height: 20,
     tintColor: '#071A2C',
   },
 
@@ -1128,26 +1098,26 @@ const styles = StyleSheet.create({
   deliveryLocationRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   deliveryLocationIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#10B981',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   deliveryLabel: {
     color: '#788DA2',
-    fontSize: 6,
+    fontSize: 12,
   },
 
   deliveryValue: {
     color: '#C8D4E0',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
-    marginLeft: 3,
+    marginLeft: 4,
   },
 
   /* =====================================================
@@ -1155,43 +1125,45 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   searchContainer: {
-    height: 38,
-    borderRadius: 8,
+    height: 52,
+    borderRadius: 14,
     backgroundColor: '#102438',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: 10,
-    marginBottom: 10,
+    paddingLeft: 16,
+    marginBottom: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
   },
 
   searchIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#8EA2B6',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   searchInput: {
     flex: 1,
     height: '100%',
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 15,
     paddingVertical: 0,
   },
 
   scanButton: {
-    width: 34,
-    height: 34,
-    borderRadius: 7,
+    width: 44,
+    height: 44,
+    borderRadius: 11,
     backgroundColor: '#3B82F6',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 2,
+    marginRight: 4,
   },
 
   scanIcon: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
     tintColor: '#FFFFFF',
   },
 
@@ -1203,10 +1175,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: '#0B1D30',
-    borderRadius: 8,
-    paddingVertical: 9,
-    paddingHorizontal: 5,
-    marginBottom: 9,
+    borderRadius: 16,
+    paddingVertical: 16,
+    paddingHorizontal: 7,
+    marginBottom: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.05)',
   },
 
   quickAction: {
@@ -1215,13 +1189,13 @@ const styles = StyleSheet.create({
   },
 
   quickIconBox: {
-    width: 28,
-    height: 28,
-    borderRadius: 7,
+    width: 48,
+    height: 48,
+    borderRadius: 14,
     backgroundColor: '#132D49',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 4,
+    marginBottom: 8,
   },
 
   quickGreenBox: {
@@ -1233,20 +1207,20 @@ const styles = StyleSheet.create({
   },
 
   quickIcon: {
-    width: 14,
-    height: 14,
+    width: 22,
+    height: 22,
     tintColor: '#6DA7FF',
   },
 
   quickTitle: {
     color: '#E8EFF6',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   quickSubtitle: {
     color: '#73899E',
-    fontSize: 5,
+    fontSize: 11,
     marginTop: 1,
   },
 
@@ -1255,44 +1229,47 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   categoryScroll: {
-    gap: 7,
-    paddingBottom: 10,
+    gap: 9,
+    paddingBottom: 13,
   },
 
   categoryItem: {
-    minWidth: 53,
-    height: 24,
-    borderRadius: 13,
+    minWidth: 69,
+    height: 36,
+    borderRadius: 999,
     backgroundColor: '#102438',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 7,
+    paddingHorizontal: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.05)',
   },
 
   categoryItemActive: {
-    backgroundColor: '#203C58',
+    backgroundColor: '#3B82F6',
+    borderColor: '#3B82F6',
   },
 
   categoryIcon: {
-    width: 10,
-    height: 10,
+    width: 14,
+    height: 14,
     tintColor: '#8298AD',
-    marginRight: 4,
+    marginRight: 6,
   },
 
   categoryIconActive: {
-    tintColor: '#10B981',
+    tintColor: '#FFFFFF',
   },
 
   categoryText: {
     color: '#8CA0B4',
-    fontSize: 6,
+    fontSize: 13,
     fontWeight: '600',
   },
 
   categoryTextActive: {
-    color: '#E4EDF6',
+    color: '#FFFFFF',
   },
 
   /* =====================================================
@@ -1303,8 +1280,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 7,
-    marginTop: 2,
+    marginBottom: 12,
+    marginTop: 10,
   },
 
   sectionTitleRow: {
@@ -1313,40 +1290,45 @@ const styles = StyleSheet.create({
   },
 
   sectionIcon: {
-    width: 12,
-    height: 12,
+    width: 18,
+    height: 18,
     tintColor: '#10B981',
-    marginRight: 5,
+    marginRight: 8,
   },
 
   fireIcon: {
-    width: 13,
-    height: 13,
-    marginRight: 5,
+    width: 20,
+    height: 20,
+    marginRight: 8,
   },
 
   sectionTitle: {
     color: '#FFFFFF',
-    fontSize: 10,
+    fontSize: 19,
     fontWeight: '800',
+    letterSpacing: 0.2,
   },
 
   seeAllButton: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'rgba(59,130,246,0.12)',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
   },
 
   seeAllText: {
     color: '#6EA5FF',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   seeAllIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#6EA5FF',
-    marginLeft: 2,
+    marginLeft: 4,
   },
 
   /* =====================================================
@@ -1355,216 +1337,311 @@ const styles = StyleSheet.create({
 
   storeCard: {
     backgroundColor: '#102238',
-    borderRadius: 8,
-    padding: 7,
+    borderRadius: 16,
+    padding: 10,
     flexDirection: 'row',
-    marginBottom: 7,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.card,
   },
 
   storeImage: {
-    width: 75,
-    height: 62,
-    borderRadius: 6,
+    width: 104,
+    height: 104,
+    borderRadius: 12,
     backgroundColor: '#183149',
   },
 
   storeContent: {
     flex: 1,
-    paddingLeft: 8,
+    paddingLeft: 12,
+    justifyContent: 'space-between',
   },
 
   storeTopRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   storeName: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 16,
     fontWeight: '800',
     flex: 1,
+    marginRight: 6,
   },
 
   heartIcon: {
-    width: 11,
-    height: 11,
+    width: 18,
+    height: 18,
     tintColor: '#10B981',
   },
 
   storeCategory: {
     color: '#8FA2B5',
-    fontSize: 6,
-    marginTop: 2,
+    fontSize: 12,
+    marginTop: 3,
   },
 
   storeMeta: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 4,
+    marginTop: 6,
   },
 
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'rgba(245,158,11,0.14)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
   },
 
   starIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#F59E0B',
-    marginRight: 2,
+    marginRight: 3,
   },
 
   ratingText: {
-    color: '#E6EEF5',
-    fontSize: 6,
-    fontWeight: '700',
+    color: '#F8C66A',
+    fontSize: 12,
+    fontWeight: '800',
   },
 
   metaDot: {
-    width: 3,
-    height: 3,
-    borderRadius: 3,
+    width: 4,
+    height: 4,
+    borderRadius: 4,
     backgroundColor: '#53697E',
-    marginHorizontal: 5,
+    marginHorizontal: 8,
   },
 
   distanceText: {
     color: '#8CA0B4',
-    fontSize: 6,
+    fontSize: 12,
+    fontWeight: '600',
   },
 
   storeBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 5,
+    alignItems: 'center',
+    marginTop: 8,
   },
 
   offerBadge: {
-    backgroundColor: 'rgba(16,185,129,0.12)',
-    borderRadius: 4,
-    paddingHorizontal: 5,
-    paddingVertical: 3,
+    backgroundColor: 'rgba(16,185,129,0.14)',
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 
   offerText: {
     color: '#10B981',
-    fontSize: 5,
-    fontWeight: '700',
+    fontSize: 11,
+    fontWeight: '800',
   },
 
   viewStoreButton: {
     backgroundColor: '#3B82F6',
-    borderRadius: 4,
-    paddingHorizontal: 9,
-    paddingVertical: 4,
+    borderRadius: 999,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    ...SHADOW.glow,
+    elevation: 4,
   },
 
   viewStoreText: {
     color: '#FFFFFF',
-    fontSize: 5,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   /* =====================================================
-     TRENDING DEALS
+     TRENDING DEALS (horizontal carousel)
   ===================================================== */
 
   limitedBadge: {
-    backgroundColor: 'rgba(245,158,11,0.12)',
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    borderRadius: 7,
+    backgroundColor: 'rgba(245,158,11,0.14)',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
   },
 
   limitedText: {
     color: '#F59E0B',
-    fontSize: 5,
-    fontWeight: '700',
+    fontSize: 11,
+    fontWeight: '800',
+  },
+
+  dealScroll: {
+    gap: 12,
+    paddingBottom: 14,
+    paddingRight: 4,
   },
 
   dealCard: {
+    width: 220,
     backgroundColor: '#102238',
-    borderRadius: 8,
-    padding: 7,
-    flexDirection: 'row',
-    marginBottom: 7,
+    borderRadius: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
   },
 
   dealImage: {
-    width: 69,
-    height: 64,
-    borderRadius: 6,
+    width: '100%',
+    height: 130,
     backgroundColor: '#183149',
   },
 
   dealContent: {
-    flex: 1,
-    paddingLeft: 8,
+    padding: 12,
   },
 
   dealTag: {
-    alignSelf: 'flex-start',
+    position: 'absolute',
+    top: 10,
+    left: 10,
     backgroundColor: '#F59E0B',
-    paddingHorizontal: 5,
-    paddingVertical: 2,
-    borderRadius: 3,
-    marginBottom: 3,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
   },
 
   dealTagText: {
     color: '#071A2C',
-    fontSize: 5,
+    fontSize: 10,
     fontWeight: '900',
+    letterSpacing: 0.6,
   },
 
   dealTitle: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 15,
     fontWeight: '700',
+    lineHeight: 20,
   },
 
   dealShop: {
     color: '#8398AC',
-    fontSize: 6,
-    marginTop: 2,
+    fontSize: 12,
+    marginTop: 3,
   },
 
   dealBottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    marginTop: 5,
+    alignItems: 'center',
+    marginTop: 10,
   },
 
   priceRow: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'baseline',
   },
 
   currentPrice: {
     color: '#10B981',
-    fontSize: 9,
+    fontSize: 18,
     fontWeight: '800',
   },
 
   oldPrice: {
     color: '#6F8295',
-    fontSize: 6,
+    fontSize: 12,
     textDecorationLine: 'line-through',
-    marginLeft: 5,
+    marginLeft: 6,
   },
 
   shopButton: {
     backgroundColor: '#3B82F6',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 4,
+    paddingHorizontal: 16,
+    paddingVertical: 7,
+    borderRadius: 999,
   },
 
   shopButtonText: {
     color: '#FFFFFF',
-    fontSize: 5,
+    fontSize: 12,
+    fontWeight: '700',
+  },
+
+  /* =====================================================
+     PROMO BANNER
+  ===================================================== */
+
+  banner: {
+    height: 150,
+    borderRadius: 18,
+    overflow: 'hidden',
+    marginBottom: 14,
+    backgroundColor: '#132A42',
+  },
+
+  bannerImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+
+  bannerOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(7,26,44,0.62)',
+  },
+
+  bannerContent: {
+    flex: 1,
+    padding: 16,
+    justifyContent: 'center',
+  },
+
+  bannerTag: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#10B981',
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+
+  bannerTagText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 0.8,
+  },
+
+  bannerTitle: {
+    color: '#FFFFFF',
+    fontSize: 22,
+    fontWeight: '800',
+    lineHeight: 28,
+  },
+
+  bannerButton: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#3B82F6',
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 999,
+    marginTop: 10,
+  },
+
+  bannerButtonText: {
+    color: '#FFFFFF',
+    fontSize: 12,
     fontWeight: '700',
   },
 
@@ -1576,43 +1653,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginBottom: 9,
+    marginBottom: 12,
   },
 
   serviceCard: {
     width: '48.5%',
     backgroundColor: '#102238',
-    borderRadius: 7,
-    padding: 9,
-    marginBottom: 7,
+    borderRadius: 16,
+    padding: 14,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
   },
 
   serviceIconBox: {
-    width: 25,
-    height: 25,
-    borderRadius: 6,
-    backgroundColor: '#162F46',
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: 'rgba(59,130,246,0.14)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 6,
+    marginBottom: 10,
   },
 
   serviceIcon: {
-    width: 13,
-    height: 13,
+    width: 22,
+    height: 22,
     tintColor: '#6EA7FF',
   },
 
   serviceTitle: {
     color: '#FFFFFF',
-    fontSize: 7,
+    fontSize: 14,
     fontWeight: '700',
   },
 
   serviceSubtitle: {
     color: '#8095A9',
-    fontSize: 5,
-    marginTop: 2,
+    fontSize: 12,
+    marginTop: 3,
   },
 
   /* =====================================================
@@ -1620,26 +1699,28 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   protectionCard: {
-    backgroundColor: '#102438',
-    borderRadius: 8,
-    padding: 9,
+    backgroundColor: 'rgba(16,185,129,0.08)',
+    borderRadius: 16,
+    padding: 14,
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(16,185,129,0.25)',
   },
 
   protectionIconBox: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: 'rgba(16,185,129,0.13)',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 8,
+    marginRight: 12,
   },
 
   protectionIcon: {
-    width: 14,
-    height: 14,
+    width: 22,
+    height: 22,
     tintColor: '#10B981',
   },
 
@@ -1649,18 +1730,18 @@ const styles = StyleSheet.create({
 
   protectionTitle: {
     color: '#DDE7F0',
-    fontSize: 7,
+    fontSize: 14,
     fontWeight: '700',
   },
 
   protectionText: {
     color: '#8297AA',
-    fontSize: 5,
-    marginTop: 2,
+    fontSize: 12,
+    marginTop: 3,
   },
 
   bottomSpace: {
-    height: 80,
+    height: 30,
   },
 
   /* =====================================================
@@ -1672,27 +1753,27 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 60,
+    height: 78,
     backgroundColor: '#081A2B',
     borderTopWidth: 1,
     borderTopColor: '#132B42',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    paddingHorizontal: 5,
+    paddingHorizontal: 7,
   },
 
   navItem: {
-    width: 50,
+    width: 65,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   navIcon: {
-    width: 16,
-    height: 16,
+    width: 21,
+    height: 21,
     tintColor: '#70869B',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   navIconActive: {
@@ -1701,7 +1782,7 @@ const styles = StyleSheet.create({
 
   navText: {
     color: '#72879A',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '600',
   },
 
@@ -1710,19 +1791,19 @@ const styles = StyleSheet.create({
   },
 
   mainNavButton: {
-    width: 43,
-    height: 43,
-    borderRadius: 22,
+    width: 56,
+    height: 56,
+    borderRadius: 29,
     backgroundColor: '#3B82F6',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -19,
+    marginTop: -25,
 
     shadowColor: '#3B82F6',
 
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 5,
     },
 
     shadowOpacity: 0.4,
@@ -1732,8 +1813,8 @@ const styles = StyleSheet.create({
   },
 
   mainNavIcon: {
-    width: 18,
-    height: 18,
+    width: 23,
+    height: 23,
     tintColor: '#FFFFFF',
   },
 });

@@ -6,13 +6,15 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================
    IMAGE ICONS
@@ -75,8 +77,7 @@ const ResetPassword = ({ navigation }) => {
 
     // Add reset password API call here
 
-    // Example:
-    // navigation.replace('Login');
+    navigation.popTo('Login');
   };
 
   return (
@@ -441,9 +442,7 @@ const ResetPassword = ({ navigation }) => {
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => {
-                if (navigation) {
-                  navigation.navigate('Login');
-                }
+                navigation.popTo('Login');
               }}
             >
               <Text style={styles.loginDirectLink}>
@@ -484,9 +483,9 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     backgroundColor: '#071A2C',
-    paddingHorizontal: 9,
-    paddingTop: 8,
-    paddingBottom: 22,
+    paddingHorizontal: 12,
+    paddingTop: 10,
+    paddingBottom: 29,
   },
 
   /* =========================================
@@ -495,18 +494,21 @@ const styles = StyleSheet.create({
 
   securityHeaderCard: {
     backgroundColor: '#11273A',
-    borderRadius: 9,
-    paddingHorizontal: 11,
-    paddingTop: 10,
-    paddingBottom: 12,
-    marginBottom: 12,
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingTop: 13,
+    paddingBottom: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   securityTopRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   securityLeftRow: {
@@ -515,38 +517,38 @@ const styles = StyleSheet.create({
   },
 
   securityIconBox: {
-    width: 29,
-    height: 29,
-    borderRadius: 6,
+    width: 38,
+    height: 38,
+    borderRadius: 8,
     backgroundColor: '#29445A',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   securityHeaderIcon: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
     tintColor: '#AFC8FF',
   },
 
   brandText: {
     color: '#69A9FF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
     letterSpacing: 0.4,
   },
 
   securityTitle: {
     color: '#AFC7FF',
-    fontSize: 11,
+    fontSize: 17,
     fontWeight: '800',
-    lineHeight: 13,
+    lineHeight: 22,
   },
 
   securitySubtitle: {
     color: '#D8E3EC',
-    fontSize: 8,
+    fontSize: 14,
     marginTop: 1,
   },
 
@@ -554,37 +556,37 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'rgba(16,185,129,0.12)',
-    paddingHorizontal: 7,
-    paddingVertical: 4,
-    borderRadius: 10,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    borderRadius: 13,
   },
 
   encryptedDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   encryptedText: {
     color: '#31DBA5',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   mainTitle: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: '800',
     letterSpacing: -0.4,
-    marginBottom: 4,
+    marginBottom: 5,
   },
 
   mainDescription: {
     color: '#B8C7D6',
-    fontSize: 8,
-    lineHeight: 12,
+    fontSize: 14,
+    lineHeight: 18,
   },
 
   /* =========================================
@@ -595,26 +597,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   inputLabel: {
     color: '#E1EAF3',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
   },
 
   pendingText: {
     color: '#CBD8E4',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '600',
   },
 
   confirmLabel: {
     color: '#E1EAF3',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   /* =========================================
@@ -622,47 +624,47 @@ const styles = StyleSheet.create({
   ========================================= */
 
   inputContainer: {
-    height: 41,
+    height: 53,
     backgroundColor: '#102238',
-    borderRadius: 7,
+    borderRadius: 9,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 13,
     borderWidth: 1,
     borderColor: '#142C43',
   },
 
   inputLeftIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#8DA5BB',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   input: {
     flex: 1,
     color: '#FFFFFF',
-    fontSize: 9,
+    fontSize: 15,
     paddingVertical: 0,
   },
 
   eyeButton: {
-    width: 26,
-    height: 30,
+    width: 34,
+    height: 39,
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
 
   eyeIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#A0B4C7',
   },
 
   sectionDivider: {
     height: 2,
     backgroundColor: '#1B3A52',
-    marginVertical: 10,
+    marginVertical: 13,
     borderRadius: 2,
   },
 
@@ -672,18 +674,21 @@ const styles = StyleSheet.create({
 
   requirementCard: {
     backgroundColor: '#0D2033',
-    borderRadius: 8,
-    paddingHorizontal: 11,
-    paddingVertical: 10,
-    marginTop: 11,
-    marginBottom: 10,
+    borderRadius: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 13,
+    marginTop: 14,
+    marginBottom: 13,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   requirementHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   requirementHeaderLeft: {
@@ -692,38 +697,38 @@ const styles = StyleSheet.create({
   },
 
   requirementHeaderIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#72A8FF',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   requirementTitle: {
     color: '#E6EEF6',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
   },
 
   requirementCount: {
     color: '#C4D1DD',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   requirementItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   requirementCircle: {
-    width: 13,
-    height: 13,
-    borderRadius: 13,
+    width: 17,
+    height: 17,
+    borderRadius: 17,
     backgroundColor: '#152D41',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   requirementCircleDone: {
@@ -731,20 +736,20 @@ const styles = StyleSheet.create({
   },
 
   requirementCheck: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#071A2C',
   },
 
   requirementPendingIcon: {
-    width: 7,
-    height: 7,
+    width: 9,
+    height: 9,
     tintColor: '#8095AA',
   },
 
   requirementText: {
     color: '#CED9E4',
-    fontSize: 7,
+    fontSize: 13,
   },
 
   requirementTextDone: {
@@ -757,27 +762,30 @@ const styles = StyleSheet.create({
 
   protectionCard: {
     backgroundColor: '#102238',
-    borderRadius: 8,
-    paddingHorizontal: 11,
-    paddingVertical: 10,
+    borderRadius: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 13,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 13,
+    marginBottom: 17,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   protectionIconBox: {
-    width: 28,
-    height: 28,
-    borderRadius: 6,
+    width: 36,
+    height: 36,
+    borderRadius: 8,
     backgroundColor: '#47380D',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   protectionIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#F59E0B',
   },
 
@@ -787,15 +795,15 @@ const styles = StyleSheet.create({
 
   protectionTitle: {
     color: '#FFFFFF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   protectionDescription: {
     color: '#B9C7D4',
-    fontSize: 7,
-    lineHeight: 10,
+    fontSize: 13,
+    lineHeight: 17,
   },
 
   /* =========================================
@@ -803,22 +811,23 @@ const styles = StyleSheet.create({
   ========================================= */
 
   resetButton: {
-    height: 44,
-    borderRadius: 7,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#3B82F6',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 12,
+    marginBottom: 16,
 
     shadowColor: '#3B82F6',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 5,
     },
     shadowOpacity: 0.25,
     shadowRadius: 8,
     elevation: 6,
+    ...SHADOW.glow,
   },
 
   resetButtonDisabled: {
@@ -826,23 +835,23 @@ const styles = StyleSheet.create({
   },
 
   resetLockIcon: {
-    width: 11,
-    height: 11,
+    width: 14,
+    height: 14,
     tintColor: '#FFFFFF',
-    marginRight: 6,
+    marginRight: 8,
   },
 
   resetButtonText: {
     color: '#FFFFFF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
   },
 
   resetArrowIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#FFFFFF',
-    marginLeft: 6,
+    marginLeft: 8,
   },
 
   /* =========================================
@@ -853,24 +862,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   loginDirectText: {
     color: '#B8C7D5',
-    fontSize: 7,
-    marginRight: 3,
+    fontSize: 13,
+    marginRight: 4,
   },
 
   loginDirectLink: {
     color: '#89B3FF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   footerText: {
     color: '#71879C',
-    fontSize: 6,
+    fontSize: 12,
     textAlign: 'center',
   },
 });

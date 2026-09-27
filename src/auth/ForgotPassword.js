@@ -5,11 +5,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================
    IMAGE ICONS
@@ -39,17 +41,15 @@ const ForgotPassword = ({ navigation }) => {
     if (selectedMethod === 'sms') {
       console.log('Send recovery code via SMS / WhatsApp');
 
-      // Example:
-      // navigation.navigate('VerifyOTP', {
-      //   type: 'sms',
-      // });
+      navigation.navigate('OTP', {
+        flow: 'reset',
+      });
     }
 
     if (selectedMethod === 'email') {
       console.log('Send password reset link via Email');
 
-      // Example:
-      // navigation.navigate('CheckEmail');
+      navigation.navigate('ResetPassword');
     }
   };
 
@@ -308,9 +308,9 @@ const styles = StyleSheet.create({
 
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 14,
-    paddingTop: 10,
-    paddingBottom: 25,
+    paddingHorizontal: 18,
+    paddingTop: 13,
+    paddingBottom: 33,
     backgroundColor: '#071A2C',
   },
 
@@ -322,21 +322,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 26,
   },
 
   backButton: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 39,
+    height: 39,
+    borderRadius: 20,
     backgroundColor: '#10273B',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   backIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#D6E4F2',
   },
 
@@ -344,28 +344,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#102536',
-    borderRadius: 15,
-    paddingHorizontal: 9,
-    paddingVertical: 4,
+    borderRadius: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
   },
 
   encryptionDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#10B981',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   encryptionText: {
     color: '#6DA8FF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
     letterSpacing: 0.35,
   },
 
   topSpacer: {
-    width: 30,
+    width: 39,
   },
 
   /* =========================================
@@ -374,40 +374,40 @@ const styles = StyleSheet.create({
 
   heroIconSection: {
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 13,
   },
 
   heroIconOuter: {
-    width: 60,
-    height: 60,
-    borderRadius: 13,
+    width: 78,
+    height: 78,
+    borderRadius: 17,
     backgroundColor: '#10273B',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   heroIconInner: {
-    width: 43,
-    height: 43,
-    borderRadius: 11,
+    width: 56,
+    height: 56,
+    borderRadius: 14,
     backgroundColor: '#071A2C',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   heroIcon: {
-    width: 23,
-    height: 23,
+    width: 30,
+    height: 30,
     tintColor: '#6FA8FF',
   },
 
   heroBadge: {
     position: 'absolute',
-    right: -3,
-    bottom: -3,
-    width: 18,
-    height: 18,
-    borderRadius: 18,
+    right: -4,
+    bottom: -4,
+    width: 23,
+    height: 23,
+    borderRadius: 23,
     backgroundColor: '#10B981',
     justifyContent: 'center',
     alignItems: 'center',
@@ -416,8 +416,8 @@ const styles = StyleSheet.create({
   },
 
   heroBadgeIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#071A2C',
   },
 
@@ -427,21 +427,21 @@ const styles = StyleSheet.create({
 
   headerSection: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 26,
   },
 
   title: {
     color: '#F4F7FA',
-    fontSize: 21,
+    fontSize: 28,
     fontWeight: '800',
     letterSpacing: -0.4,
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   subtitle: {
     color: '#C9D6E3',
-    fontSize: 9,
-    lineHeight: 13,
+    fontSize: 15,
+    lineHeight: 20,
     textAlign: 'center',
   },
 
@@ -450,16 +450,17 @@ const styles = StyleSheet.create({
   ========================================= */
 
   methodCard: {
-    minHeight: 74,
-    borderRadius: 9,
+    minHeight: 96,
+    borderRadius: 16,
     backgroundColor: '#102238',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 11,
-    paddingVertical: 10,
-    marginBottom: 9,
+    paddingHorizontal: 14,
+    paddingVertical: 13,
+    marginBottom: 12,
     borderWidth: 1,
     borderColor: 'transparent',
+    ...SHADOW.soft,
   },
 
   methodCardActive: {
@@ -468,18 +469,18 @@ const styles = StyleSheet.create({
   },
 
   methodIconBox: {
-    width: 35,
-    height: 35,
-    borderRadius: 7,
+    width: 46,
+    height: 46,
+    borderRadius: 9,
     backgroundColor: '#071A2C',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 11,
+    marginRight: 14,
   },
 
   methodIcon: {
-    width: 18,
-    height: 18,
+    width: 23,
+    height: 23,
     tintColor: '#B7CAE0',
   },
 
@@ -490,41 +491,41 @@ const styles = StyleSheet.create({
   methodTitleRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   methodSmallTitle: {
     color: '#AFC0D2',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
     letterSpacing: 0.25,
   },
 
   instantBadge: {
-    marginLeft: 6,
+    marginLeft: 8,
     backgroundColor: 'rgba(16,185,129,0.12)',
-    borderRadius: 8,
-    paddingHorizontal: 5,
+    borderRadius: 10,
+    paddingHorizontal: 7,
     paddingVertical: 2,
   },
 
   instantText: {
     color: '#35DFA8',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '800',
   },
 
   methodValue: {
     color: '#F3F7FB',
-    fontSize: 11,
+    fontSize: 17,
     fontWeight: '700',
-    marginBottom: 3,
+    marginBottom: 4,
   },
 
   methodDescription: {
     color: '#9CB0C4',
-    fontSize: 7,
-    lineHeight: 10,
+    fontSize: 13,
+    lineHeight: 17,
   },
 
   /* =========================================
@@ -532,13 +533,13 @@ const styles = StyleSheet.create({
   ========================================= */
 
   radioOuter: {
-    width: 19,
-    height: 19,
-    borderRadius: 19,
+    width: 25,
+    height: 25,
+    borderRadius: 25,
     backgroundColor: '#1A3146',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 7,
+    marginLeft: 9,
   },
 
   radioOuterActive: {
@@ -546,8 +547,8 @@ const styles = StyleSheet.create({
   },
 
   radioCheckIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#071A2C',
   },
 
@@ -556,26 +557,27 @@ const styles = StyleSheet.create({
   ========================================= */
 
   recoveryButton: {
-    height: 44,
-    borderRadius: 8,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#AFC8FF',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 12,
-    marginBottom: 15,
+    marginTop: 16,
+    marginBottom: 20,
+    ...SHADOW.glow,
   },
 
   recoveryButtonText: {
     color: '#071A2C',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   recoveryArrow: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
     tintColor: '#071A2C',
   },
 
@@ -587,28 +589,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: 30,
-    borderRadius: 8,
+    minHeight: 39,
+    borderRadius: 10,
     backgroundColor: '#071827',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
   },
 
   supportIcon: {
-    width: 10,
-    height: 10,
-    marginRight: 4,
+    width: 13,
+    height: 13,
+    marginRight: 5,
     tintColor: '#F59E0B',
   },
 
   supportText: {
     color: '#9FB2C5',
-    fontSize: 7,
-    marginRight: 3,
+    fontSize: 13,
+    marginRight: 4,
   },
 
   supportLink: {
     color: '#95B8FF',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 });

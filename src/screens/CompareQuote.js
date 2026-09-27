@@ -5,11 +5,13 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { SHADOW } from '../theme';
 
 /* =========================================================
    ONLINE DUMMY ICONS
@@ -229,10 +231,9 @@ const CompareQuote = ({ navigation }) => {
   const handleViewQuote = quote => {
     console.log('View Quote:', quote);
 
-    // Example:
-    // navigation.navigate('QuoteDetails', {
-    //   quoteId: quote.id,
-    // });
+    navigation.navigate('ServiceDetail', {
+      quoteId: quote.id,
+    });
   };
 
   /* =====================================================
@@ -263,7 +264,10 @@ const CompareQuote = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView
+      style={styles.safeArea}
+      edges={['top', 'left', 'right']}
+    >
       <StatusBar
         barStyle="light-content"
         backgroundColor="#071A2C"
@@ -828,9 +832,9 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 10,
-    paddingTop: 8,
-    paddingBottom: 20,
+    paddingHorizontal: 13,
+    paddingTop: 10,
+    paddingBottom: 26,
   },
 
   /* =====================================================
@@ -841,7 +845,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   headerLeft: {
@@ -850,17 +854,17 @@ const styles = StyleSheet.create({
   },
 
   backButton: {
-    width: 27,
-    height: 27,
-    borderRadius: 14,
+    width: 35,
+    height: 35,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   backIcon: {
-    width: 14,
-    height: 14,
+    width: 18,
+    height: 18,
     tintColor: '#CBD9E7',
   },
 
@@ -870,39 +874,39 @@ const styles = StyleSheet.create({
   },
 
   headerShieldBox: {
-    width: 17,
-    height: 17,
-    borderRadius: 5,
+    width: 22,
+    height: 22,
+    borderRadius: 7,
     backgroundColor: '#3B82F6',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   headerShield: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#FFFFFF',
   },
 
   headerTitle: {
     color: '#EAF0F7',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '800',
   },
 
   profileButton: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 31,
+    height: 31,
+    borderRadius: 16,
     backgroundColor: '#AFC7FF',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   profileIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#071A2C',
   },
 
@@ -911,7 +915,7 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   receivedRow: {
-    marginBottom: 7,
+    marginBottom: 9,
   },
 
   receivedBadge: {
@@ -919,22 +923,22 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(16,185,129,0.12)',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    borderRadius: 10,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 13,
   },
 
   receivedDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   receivedText: {
     color: '#38D8A3',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '800',
     letterSpacing: 0.3,
   },
@@ -951,41 +955,41 @@ const styles = StyleSheet.create({
 
   pageTitle: {
     color: '#FFFFFF',
-    fontSize: 20,
+    fontSize: 27,
     fontWeight: '800',
     letterSpacing: -0.5,
   },
 
   badakdevBadge: {
     backgroundColor: '#1A3150',
-    paddingHorizontal: 6,
-    paddingVertical: 3,
-    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 10,
   },
 
   badakdevText: {
     color: '#9DBEFF',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   projectRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 4,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 13,
   },
 
   projectIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#839AAF',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   projectText: {
     color: '#B5C4D2',
-    fontSize: 7,
+    fontSize: 13,
   },
 
   /* =====================================================
@@ -993,15 +997,15 @@ const styles = StyleSheet.create({
   ===================================================== */
 
   filterScroll: {
-    gap: 6,
-    marginBottom: 12,
+    gap: 8,
+    marginBottom: 16,
   },
 
   filterButton: {
-    height: 24,
-    borderRadius: 12,
+    height: 31,
+    borderRadius: 16,
     backgroundColor: '#102438',
-    paddingHorizontal: 8,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -1011,10 +1015,10 @@ const styles = StyleSheet.create({
   },
 
   filterIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#8097AA',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   filterIconActive: {
@@ -1023,7 +1027,7 @@ const styles = StyleSheet.create({
 
   filterText: {
     color: '#91A4B7',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '600',
   },
 
@@ -1037,16 +1041,19 @@ const styles = StyleSheet.create({
 
   quoteCard: {
     backgroundColor: '#102438',
-    borderRadius: 9,
-    padding: 9,
-    marginBottom: 9,
+    borderRadius: 16,
+    padding: 12,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   quoteHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   companyLeft: {
@@ -1055,13 +1062,13 @@ const styles = StyleSheet.create({
   },
 
   companyIconBox: {
-    width: 31,
-    height: 31,
-    borderRadius: 7,
+    width: 40,
+    height: 40,
+    borderRadius: 9,
     backgroundColor: '#1D3F67',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 7,
+    marginRight: 9,
   },
 
   companyIconGreen: {
@@ -1073,8 +1080,8 @@ const styles = StyleSheet.create({
   },
 
   companyIcon: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
     tintColor: '#AFC7FF',
   },
 
@@ -1084,31 +1091,31 @@ const styles = StyleSheet.create({
 
   companyName: {
     color: '#FFFFFF',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '800',
   },
 
   ratingRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 3,
+    marginTop: 4,
   },
 
   ratingIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     marginRight: 2,
   },
 
   ratingText: {
     color: '#F6B94B',
-    fontSize: 6,
+    fontSize: 12,
     fontWeight: '700',
   },
 
   reviewText: {
     color: '#73899D',
-    fontSize: 5,
+    fontSize: 11,
     marginLeft: 2,
   },
 
@@ -1118,13 +1125,13 @@ const styles = StyleSheet.create({
 
   priceText: {
     color: '#FFFFFF',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '900',
   },
 
   priceLabel: {
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
     marginTop: 2,
   },
@@ -1144,7 +1151,7 @@ const styles = StyleSheet.create({
   costRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   costItem: {
@@ -1153,40 +1160,40 @@ const styles = StyleSheet.create({
   },
 
   blueDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#3B82F6',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   greenDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 4,
+    width: 5,
+    height: 5,
+    borderRadius: 5,
     backgroundColor: '#10B981',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   costLabel: {
     color: '#8399AC',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   costValue: {
     color: '#DBE6F0',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
     marginLeft: 2,
   },
 
   progressBar: {
-    height: 3,
+    height: 4,
     flexDirection: 'row',
-    borderRadius: 5,
+    borderRadius: 7,
     overflow: 'hidden',
     backgroundColor: '#1D344A',
-    marginBottom: 9,
+    marginBottom: 12,
   },
 
   materialProgress: {
@@ -1208,7 +1215,7 @@ const styles = StyleSheet.create({
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 9,
+    marginBottom: 12,
   },
 
   infoItem: {
@@ -1225,15 +1232,15 @@ const styles = StyleSheet.create({
   },
 
   infoIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#67A4FF',
-    marginRight: 3,
+    marginRight: 4,
   },
 
   infoText: {
     color: '#BDC9D5',
-    fontSize: 5,
+    fontSize: 11,
     maxWidth: '88%',
   },
 
@@ -1248,40 +1255,41 @@ const styles = StyleSheet.create({
 
   viewQuoteButton: {
     flex: 1,
-    height: 31,
+    height: 44,
     backgroundColor: '#AFC8FF',
-    borderRadius: 6,
+    borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    ...SHADOW.glow,
   },
 
   viewQuoteText: {
     color: '#071A2C',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
   },
 
   viewArrowIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#071A2C',
-    marginLeft: 5,
+    marginLeft: 7,
   },
 
   contactButton: {
-    width: 31,
-    height: 31,
-    borderRadius: 6,
+    width: 40,
+    height: 40,
+    borderRadius: 8,
     backgroundColor: '#122E42',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 6,
+    marginLeft: 8,
   },
 
   contactIcon: {
-    width: 12,
-    height: 12,
+    width: 16,
+    height: 16,
     tintColor: '#10B981',
   },
 
@@ -1291,15 +1299,18 @@ const styles = StyleSheet.create({
 
   breakdownCard: {
     backgroundColor: '#102438',
-    borderRadius: 9,
-    padding: 9,
+    borderRadius: 16,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   breakdownHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   breakdownTitleRow: {
@@ -1308,26 +1319,26 @@ const styles = StyleSheet.create({
   },
 
   breakdownTitleIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#6EA6FF',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   breakdownTitle: {
     color: '#FFFFFF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '800',
   },
 
   turnkeyScope: {
     color: '#A4B7C9',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   tableHeader: {
     flexDirection: 'row',
-    paddingVertical: 5,
+    paddingVertical: 7,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: '#1F374B',
@@ -1336,7 +1347,7 @@ const styles = StyleSheet.create({
   tableHeading: {
     flex: 1,
     color: '#8398AC',
-    fontSize: 5,
+    fontSize: 11,
     fontWeight: '700',
     textAlign: 'center',
   },
@@ -1347,7 +1358,7 @@ const styles = StyleSheet.create({
 
   tableRow: {
     flexDirection: 'row',
-    paddingVertical: 5,
+    paddingVertical: 7,
     borderBottomWidth: 1,
     borderColor: '#162E42',
   },
@@ -1355,44 +1366,44 @@ const styles = StyleSheet.create({
   tableLabel: {
     flex: 1,
     color: '#BCC9D5',
-    fontSize: 5,
+    fontSize: 11,
   },
 
   tableValue: {
     flex: 1,
     color: '#CFDAE4',
-    fontSize: 5,
+    fontSize: 11,
     textAlign: 'center',
   },
 
   greenTableValue: {
     flex: 1,
     color: '#10B981',
-    fontSize: 5,
+    fontSize: 11,
     textAlign: 'center',
   },
 
   breakdownFooter: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 7,
+    paddingTop: 9,
   },
 
   breakdownInfoIcon: {
-    width: 10,
-    height: 10,
+    width: 13,
+    height: 13,
     tintColor: '#10B981',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   breakdownFooterText: {
     flex: 1,
     color: '#A8B8C6',
-    fontSize: 5,
-    lineHeight: 8,
+    fontSize: 11,
+    lineHeight: 14,
   },
 
   bottomSpace: {
-    height: 15,
+    height: 20,
   },
 });

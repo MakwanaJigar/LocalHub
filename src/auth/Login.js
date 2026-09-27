@@ -6,17 +6,19 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  SafeAreaView,
   StatusBar,
   ScrollView,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 /* =========================
    IMAGES
 ========================= */
 
 import logo from '../assets/logo.png';
+
+import { SHADOW } from '../theme';
 
 // import flashIcon from '../assets/icons/flash.png';
 // import customerIcon from '../assets/icons/customer.png';
@@ -50,26 +52,25 @@ const Login = ({ navigation }) => {
       rememberMe,
     });
 
-    // Example:
-    // navigation.replace('Home');
+    navigation.replace('MainTabs');
   };
 
   const handleOtpLogin = () => {
     console.log('OTP Login');
+
+    navigation.navigate('OTP', { mobile: identifier });
   };
 
   const handleForgotPassword = () => {
     console.log('Forgot Password');
 
-    // Example:
-    // navigation.navigate('ForgotPassword');
+    navigation.navigate('ForgotPassword');
   };
 
   const handleSignup = () => {
     console.log('Sign Up');
 
-    // Example:
-    // navigation.navigate('Register');
+    navigation.navigate('Register');
   };
 
   return (
@@ -526,9 +527,9 @@ const styles = StyleSheet.create({
 
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 16,
-    paddingTop: 54,
-    paddingBottom: 24,
+    paddingHorizontal: 21,
+    paddingTop: 70,
+    paddingBottom: 31,
     backgroundColor: '#071A2C',
   },
 
@@ -538,33 +539,33 @@ const styles = StyleSheet.create({
 
   logoSection: {
     alignSelf: 'center',
-    width: 52,
-    height: 52,
-    marginTop: 4,
-    marginBottom: 7,
+    width: 68,
+    height: 68,
+    marginTop: 5,
+    marginBottom: 9,
   },
 
   logoBox: {
-    width: 48,
-    height: 48,
-    borderRadius: 12,
+    width: 62,
+    height: 62,
+    borderRadius: 16,
     backgroundColor: '#142A3D',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   logo: {
-    width: 30,
-    height: 30,
+    width: 39,
+    height: 39,
   },
 
   onlineBadge: {
     position: 'absolute',
     right: -1,
     bottom: 0,
-    width: 15,
-    height: 15,
-    borderRadius: 20,
+    width: 20,
+    height: 20,
+    borderRadius: 26,
     backgroundColor: '#25DA9A',
     justifyContent: 'center',
     alignItems: 'center',
@@ -573,8 +574,8 @@ const styles = StyleSheet.create({
   },
 
   flashIcon: {
-    width: 8,
-    height: 8,
+    width: 10,
+    height: 10,
     tintColor: '#071A2C',
   },
 
@@ -584,49 +585,49 @@ const styles = StyleSheet.create({
 
   headerSection: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 26,
   },
 
   platformRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 5,
+    marginBottom: 7,
   },
 
   platformText: {
     color: '#57A3FF',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '800',
     letterSpacing: 0.5,
   },
 
   smallDot: {
-    width: 3,
-    height: 3,
-    borderRadius: 5,
+    width: 4,
+    height: 4,
+    borderRadius: 7,
     backgroundColor: '#10B981',
-    marginHorizontal: 5,
+    marginHorizontal: 7,
   },
 
   verifiedText: {
     color: '#37D8A1',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '700',
   },
 
   title: {
     color: '#F2F6FA',
-    fontSize: 23,
+    fontSize: 30,
     fontWeight: '800',
     letterSpacing: -0.5,
   },
 
   subtitle: {
     color: '#D7E1EC',
-    fontSize: 11,
-    lineHeight: 15,
+    fontSize: 17,
+    lineHeight: 22,
     textAlign: 'center',
-    marginTop: 4,
+    marginTop: 5,
   },
 
   /* =========================
@@ -635,18 +636,18 @@ const styles = StyleSheet.create({
 
   roleContainer: {
     backgroundColor: '#031425',
-    borderRadius: 22,
-    padding: 3,
+    borderRadius: 29,
+    padding: 4,
     flexDirection: 'row',
-    marginBottom: 17,
+    marginBottom: 22,
   },
 
   roleButton: {
     flex: 1,
-    minHeight: 32,
-    borderRadius: 18,
+    minHeight: 42,
+    borderRadius: 23,
     flexDirection: 'row',
-    gap: 7,
+    gap: 9,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -656,13 +657,13 @@ const styles = StyleSheet.create({
   },
 
   roleIcon: {
-    width: 13,
-    height: 13,
+    width: 17,
+    height: 17,
   },
 
   roleText: {
     color: '#9CAEC1',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '600',
   },
 
@@ -677,12 +678,12 @@ const styles = StyleSheet.create({
   labelRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   label: {
     color: '#E1EBF5',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '700',
   },
 
@@ -692,16 +693,16 @@ const styles = StyleSheet.create({
   },
 
   authDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 5,
+    width: 7,
+    height: 7,
+    borderRadius: 7,
     backgroundColor: '#10B981',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   instantAuthText: {
     color: '#3EE3A8',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '600',
   },
 
@@ -710,15 +711,15 @@ const styles = StyleSheet.create({
   ========================= */
 
   inputContainer: {
-    height: 48,
-    borderRadius: 9,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#102238',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 11,
+    paddingHorizontal: 14,
     borderWidth: 1,
     borderColor: '#142D45',
-    marginBottom: 13,
+    marginBottom: 17,
   },
 
   countrySection: {
@@ -727,42 +728,42 @@ const styles = StyleSheet.create({
   },
 
   flag: {
-    fontSize: 12,
-    marginRight: 3,
+    fontSize: 18,
+    marginRight: 4,
   },
 
   countryCode: {
     color: '#E2EAF2',
-    fontSize: 11,
+    fontSize: 17,
     fontWeight: '600',
-    marginRight: 4,
+    marginRight: 5,
   },
 
   chevronIcon: {
-    width: 9,
-    height: 9,
+    width: 12,
+    height: 12,
     tintColor: '#8FA2B8',
   },
 
   verticalDivider: {
     width: 1,
-    height: 24,
+    height: 31,
     backgroundColor: '#243A4F',
-    marginHorizontal: 9,
+    marginHorizontal: 12,
   },
 
   input: {
     flex: 1,
     color: '#F4F7FA',
-    fontSize: 11,
+    fontSize: 17,
     paddingVertical: 0,
   },
 
   inputRightIcon: {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
     tintColor: '#8AA0B7',
-    marginLeft: 7,
+    marginLeft: 9,
   },
 
   /* =========================
@@ -772,51 +773,51 @@ const styles = StyleSheet.create({
   passwordHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   forgotText: {
     color: '#76A7FF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
   },
 
   passwordInputContainer: {
-    height: 46,
-    borderRadius: 9,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#102238',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     borderWidth: 1,
     borderColor: '#142D45',
-    marginBottom: 12,
+    marginBottom: 16,
   },
 
   passwordLeftIcon: {
-    width: 16,
-    height: 16,
+    width: 21,
+    height: 21,
     tintColor: '#7F93A8',
   },
 
   passwordInput: {
     flex: 1,
     color: '#FFFFFF',
-    fontSize: 11,
-    marginLeft: 10,
+    fontSize: 17,
+    marginLeft: 13,
     paddingVertical: 0,
   },
 
   eyeButton: {
-    width: 30,
-    height: 30,
+    width: 39,
+    height: 39,
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
 
   eyeIcon: {
-    width: 18,
-    height: 18,
+    width: 23,
+    height: 23,
     tintColor: '#9DB0C3',
   },
 
@@ -828,7 +829,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 21,
   },
 
   rememberRow: {
@@ -837,12 +838,12 @@ const styles = StyleSheet.create({
   },
 
   checkbox: {
-    width: 16,
-    height: 16,
-    borderRadius: 6,
+    width: 21,
+    height: 21,
+    borderRadius: 8,
     borderWidth: 1,
     borderColor: '#7991AA',
-    marginRight: 7,
+    marginRight: 9,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -853,14 +854,14 @@ const styles = StyleSheet.create({
   },
 
   checkIcon: {
-    width: 11,
-    height: 11,
+    width: 14,
+    height: 14,
     tintColor: '#071A2C',
   },
 
   rememberText: {
     color: '#DAE5EF',
-    fontSize: 9,
+    fontSize: 15,
   },
 
   aesRow: {
@@ -869,17 +870,17 @@ const styles = StyleSheet.create({
   },
 
   aesCircle: {
-    width: 8,
-    height: 8,
-    borderRadius: 8,
+    width: 10,
+    height: 10,
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: '#95ABC1',
-    marginRight: 5,
+    marginRight: 7,
   },
 
   aesText: {
     color: '#7F93A7',
-    fontSize: 8,
+    fontSize: 14,
   },
 
   /* =========================
@@ -887,37 +888,38 @@ const styles = StyleSheet.create({
   ========================= */
 
   signInButton: {
-    height: 48,
-    borderRadius: 10,
+    height: 54,
+    borderRadius: 14,
     backgroundColor: '#3B82F6',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
 
     shadowColor: '#3B82F6',
 
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 7,
     },
 
     shadowOpacity: 0.25,
     shadowRadius: 12,
 
     elevation: 7,
+    ...SHADOW.glow,
   },
 
   signInText: {
     color: '#061829',
-    fontSize: 12,
+    fontSize: 18,
     fontWeight: '700',
-    marginRight: 10,
+    marginRight: 13,
   },
 
   signInArrow: {
-    width: 16,
-    height: 16,
+    width: 21,
+    height: 21,
     tintColor: '#071A2C',
   },
 
@@ -926,25 +928,25 @@ const styles = StyleSheet.create({
   ========================= */
 
   otpButton: {
-    height: 38,
-    borderRadius: 9,
+    height: 49,
+    borderRadius: 12,
     backgroundColor: '#0D2033',
     flexDirection: 'row',
-    gap: 7,
+    gap: 9,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 14,
+    marginBottom: 18,
   },
 
   otpIcon: {
-    width: 15,
-    height: 15,
+    width: 20,
+    height: 20,
     tintColor: '#6EA6FF',
   },
 
   otpText: {
     color: '#E0EAF4',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '600',
   },
 
@@ -955,7 +957,7 @@ const styles = StyleSheet.create({
   dividerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 20,
   },
 
   divider: {
@@ -966,9 +968,9 @@ const styles = StyleSheet.create({
 
   dividerText: {
     color: '#7890A6',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '700',
-    marginHorizontal: 9,
+    marginHorizontal: 12,
   },
 
   /* =========================
@@ -977,29 +979,29 @@ const styles = StyleSheet.create({
 
   socialRow: {
     flexDirection: 'row',
-    gap: 8,
-    marginBottom: 17,
+    gap: 10,
+    marginBottom: 22,
   },
 
   socialButton: {
     flex: 1,
-    height: 42,
-    borderRadius: 9,
+    height: 55,
+    borderRadius: 12,
     backgroundColor: '#102238',
     flexDirection: 'row',
-    gap: 8,
+    gap: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   socialIcon: {
-    width: 17,
-    height: 17,
+    width: 22,
+    height: 22,
   },
 
   socialText: {
     color: '#F1F5F9',
-    fontSize: 10,
+    fontSize: 16,
     fontWeight: '700',
   },
 
@@ -1008,28 +1010,31 @@ const styles = StyleSheet.create({
   ========================= */
 
   activityCard: {
-    minHeight: 48,
-    borderRadius: 10,
+    minHeight: 62,
+    borderRadius: 16,
     backgroundColor: '#031727',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    marginBottom: 16,
+    paddingHorizontal: 13,
+    marginBottom: 21,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
+    ...SHADOW.soft,
   },
 
   activityIconContainer: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     backgroundColor: 'rgba(16,185,129,0.12)',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 8,
+    marginRight: 10,
   },
 
   locationIcon: {
-    width: 16,
-    height: 16,
+    width: 21,
+    height: 21,
     tintColor: '#10B981',
   },
 
@@ -1039,27 +1044,27 @@ const styles = StyleSheet.create({
 
   activityLabel: {
     color: '#BAC8D7',
-    fontSize: 8,
+    fontSize: 14,
     fontWeight: '600',
   },
 
   activityValue: {
     color: '#EFF5FA',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
     marginTop: 2,
   },
 
   liveBadge: {
-    paddingHorizontal: 7,
-    paddingVertical: 4,
-    borderRadius: 10,
+    paddingHorizontal: 9,
+    paddingVertical: 5,
+    borderRadius: 13,
     backgroundColor: 'rgba(16,185,129,0.12)',
   },
 
   liveText: {
     color: '#25DFA5',
-    fontSize: 7,
+    fontSize: 13,
     fontWeight: '800',
   },
 
@@ -1070,18 +1075,18 @@ const styles = StyleSheet.create({
   signupRow: {
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 4,
-    marginBottom: 8,
+    gap: 5,
+    marginBottom: 10,
   },
 
   signupText: {
     color: '#D5E0EB',
-    fontSize: 9,
+    fontSize: 15,
   },
 
   signupLink: {
     color: '#8DB5FF',
-    fontSize: 9,
+    fontSize: 15,
     fontWeight: '700',
   },
 });
